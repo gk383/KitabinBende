@@ -9,8 +9,5 @@ namespace KitabinBende.Business.Abstract
     {
         List<AuthorType> GetAll();
         AuthorType GetByID(int authorTypeID);       
-        void Add(AuthorType authorType);
-        void Update(AuthorType authorType);
-        void Delete(AuthorType authorType);
     }
 }

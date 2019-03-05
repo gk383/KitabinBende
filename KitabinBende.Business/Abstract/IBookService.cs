@@ -7,10 +7,17 @@ namespace KitabinBende.Business.Abstract
 {
     interface IBookService
     {
-        List<AuthorType> GetAll();
-        AuthorType GetByID(int authorTypeID);
-        void Add(AuthorType authorType);
-        void Update(AuthorType authorType);
-        void Delete(int authorTypeID);
+        List<Book> GetByUserID(int userID);
+        List<Book> GetByISBN(int ISBN);
+        List<Book> GetByPublisherID(int publisherID);
+        List<Book> GetByLanguageID(int languageID);
+        List<Book> GetByAuthorID(int authorID);
+        List<Book> GetByTranslatorID(int authorID);
+
+        Book GetByID(int BookID);
+
+        void Add(Book Book);
+        void Update(Book Book);
+        void Delete(Book Book);
     }
 }

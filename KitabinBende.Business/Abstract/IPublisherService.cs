@@ -7,10 +7,8 @@ namespace KitabinBende.Business.Abstract
 {
     interface IPublisherService
     {
-        List<AuthorType> GetAll();
-        AuthorType GetByID(int authorTypeID);
-        void Add(AuthorType authorType);
-        void Update(AuthorType authorType);
-        void Delete(int authorTypeID);
+        List<Publisher> GetAll();
+        Publisher GetByID(int publisherID);
+        void Add(Publisher publisher);
     }
 }

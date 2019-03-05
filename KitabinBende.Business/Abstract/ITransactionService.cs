@@ -7,10 +7,19 @@ namespace KitabinBende.Business.Abstract
 {
     interface ITransactionService
     {
-        List<AuthorType> GetAll();
-        AuthorType GetByID(int authorTypeID);
-        void Add(AuthorType authorType);
-        void Update(AuthorType authorType);
-        void Delete(int authorTypeID);
+        List<Transaction> GetAllInProgress();
+        List<Transaction> GetAllExpired();
+        List<Transaction> GetAllSuccessful();
+        List<Transaction> GetAllUnSuccessful();
+
+        List<Transaction> GetByReceiverUserID(int userID);
+        List<Transaction> GetByHolderUserID(int userID);
+        List<Transaction> GetByUserID(int userID);
+
+        Transaction GetByID(int transactionID);
+
+
+        void Add(Transaction transaction);
+        void Update(Transaction transaction);
     }
 }

@@ -7,10 +7,10 @@ namespace KitabinBende.Business.Abstract
 {
     interface IUserService
     {
-        List<AuthorType> GetAll();
-        AuthorType GetByID(int authorTypeID);
-        void Add(AuthorType authorType);
-        void Update(AuthorType authorType);
-        void Delete(int authorTypeID);
+        User GetByID(int authorTypeID);
+
+        void Add(User user);
+        void Update(User user);
+        void Delete(User user);
     }
 }

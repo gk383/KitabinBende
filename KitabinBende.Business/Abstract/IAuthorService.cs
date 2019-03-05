@@ -10,6 +10,7 @@ namespace KitabinBende.Business.Abstract
         List<Author> GetAll();
         Author GetByID(int authorID);               
         List<Author> GetByType(int authorTypeID);
+
         void Add(Author author);
         void Update(Author author);
         void Delete(Author author);

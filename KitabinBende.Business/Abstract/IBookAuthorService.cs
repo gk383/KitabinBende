@@ -9,6 +9,7 @@ namespace KitabinBende.Business.Abstract
     {
         List<BookAuthor> GetByBookID(int bookID);
         List<BookAuthor> GetByAuthorID(int authorID);
+
         void Add(BookAuthor bookAuthor);
         void Delete(BookAuthor bookAuthor);
     }

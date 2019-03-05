@@ -7,10 +7,13 @@ namespace KitabinBende.Business.Abstract
 {
     interface IUserAddressService
     {
-        List<AuthorType> GetAll();
-        AuthorType GetByID(int authorTypeID);
-        void Add(AuthorType authorType);
-        void Update(AuthorType authorType);
-        void Delete(int authorTypeID);
+        List<UserAddress> GetByUserID(int userID);
+        UserAddress GetActiveByUserID(int userID);
+        UserAddress GetByID(int userAddressID);
+
+        void SetActive(int userAddressID);
+        void Add(UserAddress userAddress);
+        void Update(UserAddress userAddress);
+        void Delete(UserAddress userAddress);
     }
 }
