@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{BB8AD565-5626-4075-BFB3-7616C82DA36C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E42A0ADE-F81B-4D07-855E-21605D68AC3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitabinBende.Core", "KitabinBende.Core\KitabinBende.Core.csproj", "{88DB5917-8547-4A72-8FE5-B9A222AE320E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitabinBende.Entities", "KitabinBende.Entities\KitabinBende.Entities.csproj", "{DEB29D39-DD4B-4E09-AE44-1E3BA64C7D04}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitabinBende.DataAccess", "KitabinBende.DataAccess\KitabinBende.DataAccess.csproj", "{C2B2D5D7-21E2-44A5-9054-B54D49BA2BFA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitabinBende.Business", "KitabinBende.Business\KitabinBende.Business.csproj", "{8FC9EF69-D79C-4579-BB6C-4D550EC4F484}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{36C792DB-2B58-4D68-AC47-39C62A9286E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KitabinBende.MvcWeb", "KitabinBende.MvcWeb\KitabinBende.MvcWeb.csproj", "{BB26E113-50B5-403A-920A-ED93721AAAD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88DB5917-8547-4A72-8FE5-B9A222AE320E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88DB5917-8547-4A72-8FE5-B9A222AE320E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88DB5917-8547-4A72-8FE5-B9A222AE320E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88DB5917-8547-4A72-8FE5-B9A222AE320E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEB29D39-DD4B-4E09-AE44-1E3BA64C7D04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEB29D39-DD4B-4E09-AE44-1E3BA64C7D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEB29D39-DD4B-4E09-AE44-1E3BA64C7D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEB29D39-DD4B-4E09-AE44-1E3BA64C7D04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2B2D5D7-21E2-44A5-9054-B54D49BA2BFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2B2D5D7-21E2-44A5-9054-B54D49BA2BFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2B2D5D7-21E2-44A5-9054-B54D49BA2BFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2B2D5D7-21E2-44A5-9054-B54D49BA2BFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FC9EF69-D79C-4579-BB6C-4D550EC4F484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC9EF69-D79C-4579-BB6C-4D550EC4F484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC9EF69-D79C-4579-BB6C-4D550EC4F484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC9EF69-D79C-4579-BB6C-4D550EC4F484}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB26E113-50B5-403A-920A-ED93721AAAD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB26E113-50B5-403A-920A-ED93721AAAD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB26E113-50B5-403A-920A-ED93721AAAD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB26E113-50B5-403A-920A-ED93721AAAD9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{88DB5917-8547-4A72-8FE5-B9A222AE320E} = {BB8AD565-5626-4075-BFB3-7616C82DA36C}
+		{DEB29D39-DD4B-4E09-AE44-1E3BA64C7D04} = {BB8AD565-5626-4075-BFB3-7616C82DA36C}
+		{C2B2D5D7-21E2-44A5-9054-B54D49BA2BFA} = {BB8AD565-5626-4075-BFB3-7616C82DA36C}
+		{8FC9EF69-D79C-4579-BB6C-4D550EC4F484} = {BB8AD565-5626-4075-BFB3-7616C82DA36C}
+		{BB26E113-50B5-403A-920A-ED93721AAAD9} = {36C792DB-2B58-4D68-AC47-39C62A9286E3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F96AC977-57A5-4145-83C2-02DCA355E062}
+	EndGlobalSection
+EndGlobal

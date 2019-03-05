@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KitabinBende.DataAccess\KitabinBende.DataAccess.csproj" />
+    <ProjectReference Include="..\KitabinBende.Entities\KitabinBende.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
