@@ -9,5 +9,6 @@ namespace KitabinBende.DataAccess.Abstract
     public interface IBookDal : IEntityRepository<Book>
     {
         //Custom Operations
+        
     }
 }

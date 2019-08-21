@@ -1,10 +1,10 @@
-﻿using KitabinBende.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using KitabinBende.Core.Entities;
 
 namespace KitabinBende.Entities.Concrete
 {
-    public partial class UserAddress: IEntity
+    public partial class UserAddress : IEntity
     {
         public int UserAddressId { get; set; }
         public int UserId { get; set; }
@@ -17,7 +17,7 @@ namespace KitabinBende.Entities.Concrete
         public int CityId { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual City City { get; set; }
-        public virtual User User { get; set; }
+        public City City { get; set; }
+        public AspNetUsers User { get; set; }
     }
 }

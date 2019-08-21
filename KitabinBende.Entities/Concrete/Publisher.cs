@@ -1,10 +1,10 @@
-﻿using KitabinBende.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using KitabinBende.Core.Entities;
 
 namespace KitabinBende.Entities.Concrete
 {
-    public partial class Publisher: IEntity
+    public partial class Publisher : IEntity
     {
         public Publisher()
         {
@@ -14,6 +14,6 @@ namespace KitabinBende.Entities.Concrete
         public int PublisherId { get; set; }
         public string PublisherName { get; set; }
 
-        public virtual ICollection<Book> Book { get; set; }
+        public ICollection<Book> Book { get; set; }
     }
 }

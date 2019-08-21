@@ -4,13 +4,14 @@ using KitabinBende.Core.Entities;
 
 namespace KitabinBende.Entities.Concrete
 {
-    public partial class BookAuthor : IEntity
+    public partial class BookCategory : IEntity
     {
-        public int BookAuthorId { get; set; }
+ 
+        public int BookCategoryId { get; set; }
         public int BookId { get; set; }
-        public int AuthorId { get; set; }
+        public int CategoryId { get; set; }
 
-        public Author Author { get; set; }
         public Book Book { get; set; }
+        public Category Category { get; set; }
     }
 }

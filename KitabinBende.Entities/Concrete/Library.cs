@@ -1,10 +1,10 @@
-﻿using KitabinBende.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using KitabinBende.Core.Entities;
 
 namespace KitabinBende.Entities.Concrete
 {
-    public partial class Library: IEntity
+    public partial class Library : IEntity
     {
         public Library()
         {
@@ -14,9 +14,10 @@ namespace KitabinBende.Entities.Concrete
         public int LibraryId { get; set; }
         public int BookId { get; set; }
         public int UserId { get; set; }
+        public bool IsShareable { get; set; }
 
-        public virtual Book Book { get; set; }
-        public virtual User User { get; set; }
-        public virtual ICollection<Transaction> Transaction { get; set; }
+        public Book Book { get; set; }
+        public AspNetUsers User { get; set; }
+        public ICollection<Transaction> Transaction { get; set; }
     }
 }

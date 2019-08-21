@@ -1,10 +1,10 @@
-﻿using KitabinBende.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using KitabinBende.Core.Entities;
 
 namespace KitabinBende.Entities.Concrete
 {
-    public partial class BookImage: IEntity
+    public partial class BookImage : IEntity
     {
         public int BookImageId { get; set; }
         public int BookId { get; set; }
@@ -13,6 +13,6 @@ namespace KitabinBende.Entities.Concrete
         public bool IsUploadedByUser { get; set; }
         public bool IsActive { get; set; }
 
-        public virtual Book Book { get; set; }
+        public Book Book { get; set; }
     }
 }

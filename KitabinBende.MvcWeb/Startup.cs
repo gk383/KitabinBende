@@ -22,6 +22,9 @@ namespace KitabinBende.MvcWeb
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ILibraryService, LibraryManager>();
+            services.AddScoped<ILibraryDal, EfLibraryDal>();
+
             services.AddDbContext<CustomIdentityDbContext>
                 (options => options.UseSqlServer("Server=.;Database=KitabinBendeDb;user id=sa;password=123qaz;Trusted_Connection=True;"));
 

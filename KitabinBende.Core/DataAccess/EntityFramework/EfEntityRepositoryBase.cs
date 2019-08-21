@@ -43,8 +43,10 @@ namespace KitabinBende.Core.DataAccess.EntityFramework
 
         public List<TEntity> GetList(Expression<Func<TEntity, bool>> filter = null)
         {
+
             using (var db = new TContext())
             {
+                
                 return filter==null
                     ? db.Set<TEntity>().ToList()
                     : db.Set<TEntity>().Where(filter).ToList();

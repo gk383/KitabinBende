@@ -1,10 +1,10 @@
-﻿using KitabinBende.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using KitabinBende.Core.Entities;
 
 namespace KitabinBende.Entities.Concrete
 {
-    public partial class Language: IEntity
+    public partial class Language : IEntity
     {
         public Language()
         {
@@ -14,6 +14,6 @@ namespace KitabinBende.Entities.Concrete
         public int LanguageId { get; set; }
         public string LanguageName { get; set; }
 
-        public virtual ICollection<Book> Book { get; set; }
+        public ICollection<Book> Book { get; set; }
     }
 }

@@ -7,10 +7,10 @@ namespace KitabinBende.Business.Abstract
 {
     interface IUserService
     {
-        User GetByID(int authorTypeID);
+        AspNetUsers GetByID(int authorTypeID);
 
-        void Add(User user);
-        void Update(User user);
-        void Delete(User user);
+        void Add(AspNetUsers user);
+        void Update(AspNetUsers user);
+        void Delete(AspNetUsers user);
     }
 }

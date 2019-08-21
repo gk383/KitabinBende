@@ -1,10 +1,10 @@
-﻿using KitabinBende.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using KitabinBende.Core.Entities;
 
 namespace KitabinBende.Entities.Concrete
 {
-    public partial class TransactionType: IEntity
+    public partial class TransactionType : IEntity
     {
         public TransactionType()
         {
@@ -15,6 +15,6 @@ namespace KitabinBende.Entities.Concrete
         public string TransactionTypeName { get; set; }
         public int ValidityHours { get; set; }
 
-        public virtual ICollection<Transaction> Transaction { get; set; }
+        public ICollection<Transaction> Transaction { get; set; }
     }
 }

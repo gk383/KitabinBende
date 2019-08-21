@@ -1,10 +1,10 @@
-﻿using KitabinBende.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using KitabinBende.Core.Entities;
 
 namespace KitabinBende.Entities.Concrete
 {
-    public partial class TransactionStatus: IEntity
+    public partial class TransactionStatus : IEntity
     {
         public TransactionStatus()
         {
@@ -14,6 +14,6 @@ namespace KitabinBende.Entities.Concrete
         public int TransactionStatusId { get; set; }
         public string TransactionStatusName { get; set; }
 
-        public virtual ICollection<Transaction> Transaction { get; set; }
+        public ICollection<Transaction> Transaction { get; set; }
     }
 }

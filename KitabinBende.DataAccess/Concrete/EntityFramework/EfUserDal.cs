@@ -7,7 +7,7 @@ using KitabinBende.Entities.Concrete;
 
 namespace KitabinBende.DataAccess.Concrete.EntityFramework
 {
-    public class EfUserDal : EfEntityRepositoryBase<User, KitabinBendeDbContext>, IUserDal
+    public class EfUserDal : EfEntityRepositoryBase<AspNetUsers, KitabinBendeDbContext>, IUserDal
     {
     }
 }

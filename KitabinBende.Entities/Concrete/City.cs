@@ -1,10 +1,10 @@
-﻿using KitabinBende.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using KitabinBende.Core.Entities;
 
 namespace KitabinBende.Entities.Concrete
 {
-    public partial class City: IEntity
+    public partial class City : IEntity
     {
         public City()
         {
@@ -14,6 +14,6 @@ namespace KitabinBende.Entities.Concrete
         public int CityId { get; set; }
         public string CityName { get; set; }
 
-        public virtual ICollection<UserAddress> UserAddress { get; set; }
+        public ICollection<UserAddress> UserAddress { get; set; }
     }
 }

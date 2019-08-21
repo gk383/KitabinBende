@@ -1,10 +1,10 @@
-﻿using KitabinBende.Core.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using KitabinBende.Core.Entities;
 
 namespace KitabinBende.Entities.Concrete
 {
-    public partial class AuthorType: IEntity
+    public partial class AuthorType : IEntity
     {
         public AuthorType()
         {
@@ -14,6 +14,6 @@ namespace KitabinBende.Entities.Concrete
         public int AuthorTypeId { get; set; }
         public string AuthorTypeName { get; set; }
 
-        public virtual ICollection<Author> Author { get; set; }
+        public ICollection<Author> Author { get; set; }
     }
 }

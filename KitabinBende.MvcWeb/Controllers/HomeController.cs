@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KitabinBende.MvcWeb.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         

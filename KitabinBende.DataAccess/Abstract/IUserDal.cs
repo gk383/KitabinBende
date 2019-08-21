@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KitabinBende.DataAccess.Abstract
 {
-    public interface IUserDal : IEntityRepository<User>
+    public interface IUserDal : IEntityRepository<AspNetUsers>
     {
         //Custom Operations
     }
