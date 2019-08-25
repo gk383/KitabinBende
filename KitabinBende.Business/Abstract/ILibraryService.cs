@@ -12,6 +12,12 @@ namespace KitabinBende.Business.Abstract
         Library GetByID(int libraryID);
 
         List<Library> GetListing();
+        Dictionary<Category, int> GetCategoriesForList(List<Library> libraryList);
+        Dictionary<Language, int> GetLanguagesForList(List<Library> libraryList);
+        Dictionary<Author, int> GetAuthorForList(List<Library> libraryList);
+        Dictionary<Publisher, int> GetPublisherForList(List<Library> libraryList);
+
+
 
         void Add(Library library);
         void Update(Library library);
