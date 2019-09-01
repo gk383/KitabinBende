@@ -186,6 +186,12 @@ namespace KitabinBende.DataAccess.Concrete.EntityFramework
 
                 entity.Property(e => e.PointValue).HasDefaultValueSql("((10))");
 
+                entity.Property(e => e.PageCount).HasColumnName("PageCount");
+
+                entity.Property(e => e.FirstPublishYear).HasColumnName("FirstPublishYear");
+
+                entity.Property(e => e.LanguageId).HasColumnName("LanguageID");
+
                 entity.Property(e => e.PublisherId).HasColumnName("PublisherID");
 
                 entity.HasOne(d => d.Language)
@@ -347,10 +353,17 @@ namespace KitabinBende.DataAccess.Concrete.EntityFramework
             modelBuilder.Entity<Category>(entity =>
             {
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
-
+                entity.Property(e => e.ParentCategoryId).HasColumnName("ParentCategoryID");
+                entity.Property(e => e.CategoryLevel)
+                   .IsRequired();                   
                 entity.Property(e => e.CategoryName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+                entity.HasOne(d => d.Category2)
+                   .WithMany(p => p.Category1)
+                   .HasForeignKey(d => d.ParentCategoryId)
+                   .OnDelete(DeleteBehavior.ClientSetNull)
+                   .HasConstraintName("FK_Category_Category");
             });
 
             modelBuilder.Entity<City>(entity =>

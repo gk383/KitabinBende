@@ -23,6 +23,7 @@ namespace KitabinBende.Entities.Concrete
         public string Isbn { get; set; }
         public string BookName { get; set; }
         public int? PageCount { get; set; }
+        public int? FirstPublishYear { get; set; }
         public string Description { get; set; }
         public byte PointValue { get; set; }
 

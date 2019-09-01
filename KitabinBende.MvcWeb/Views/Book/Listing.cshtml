@@ -147,7 +147,7 @@
                                             <div class="product-wrapper mb-40">
                                                 <div class="product-img">
                                                     <a href="#">
-                                                        <img src="/BookPhotos/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().BookId/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().Url" alt="@ListLoopItem.Book.BookName" class="primary" />
+                                                        <img src="/BookPhotos/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().BookId/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().Url" alt="@ListLoopItem.Book.BookName" class="primary" style="width:256px; height:400px" />
                                                     </a>
                                                     <div class="quick-view">
                                                         <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
@@ -180,13 +180,23 @@
 
 
                                                     </div>
-                                                    <h4><a href="#">@ListLoopItem.Book.BookName</a></h4>
+                                                    <h4><a href="#">@(ListLoopItem.Book.BookName.Length>20
+                                                                ?ListLoopItem.Book.BookName.Substring(0,20)+".."
+                                                                :ListLoopItem.Book.BookName)</a></h4>
                                                     <div class="product-price">
                                                         <ul>
                                                             @foreach (var AuthorNameLoopItem in ListLoopItem.Book.BookAuthor)
                                                             {
-                                                                <li>@AuthorNameLoopItem.Author.AuthorName</li>
+                                                                <li>@(
+                                                                    AuthorNameLoopItem.Author.AuthorName.Length>15
+                                                                    ?AuthorNameLoopItem.Author.AuthorName.Substring(0,15)+".."
+                                                                    :AuthorNameLoopItem.Author.AuthorName
+                                                                    )</li>
                                                             }
+                                                            @(ListLoopItem.Book.BookAuthor.Count>0 
+                                                                ? Html.Raw("")
+                                                                : Html.Raw("<li>-</li>"))
+                                                            
 
                                                         </ul>
                                                     </div>
@@ -250,7 +260,7 @@
                                                                 }
                                                             </ul>
                                                         </div>
-                                                        <p style="max-height: 215px; overflow: auto;">@Html.Raw(ListLoopItem.Book.Description)</p>
+                                                        <div style="max-height: 215px; overflow: auto;">@Html.Raw(ListLoopItem.Book.Description)</div>
                                                     </div>
                                                     <div class="product-link">
                                                         <div class="product-button">

@@ -28,6 +28,7 @@ namespace KitabinBende.DataAccess.Concrete.EntityFramework
                     .Include(x => x.Book.BookTranslator).ThenInclude(y => y.Author)
                     .Include(x => x.Book.Language)
                     .Include(x => x.Book.Publisher)
+                    .GroupBy(g => g.Book).Select(x=>x.FirstOrDefault())
                     .ToList()
                     : db.Set<Library>().Where(filter)
                     .Include(x => x.Book.BookAuthor).ThenInclude(y => y.Author)
@@ -38,6 +39,7 @@ namespace KitabinBende.DataAccess.Concrete.EntityFramework
                     .Include(x => x.Book.BookTranslator).ThenInclude(y => y.Author)
                     .Include(x => x.Book.Language)
                     .Include(x => x.Book.Publisher)
+                    .GroupBy(g => g.Book).Select(x => x.FirstOrDefault())
                     .ToList();
             }
 
