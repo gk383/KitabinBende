@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KitabinBende.Business.Abstract
 {
-    interface IPublisherService
+    public interface IPublisherService
     {
         List<Publisher> GetAll();
         Publisher GetByID(int publisherID);

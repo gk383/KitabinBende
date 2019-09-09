@@ -10,7 +10,7 @@ namespace KitabinBende.MvcWeb.Controllers
     //[Authorize]
     public class HomeController : Controller
     {
-        
+        [Route("")]
         public IActionResult Index()
         {
             return View();

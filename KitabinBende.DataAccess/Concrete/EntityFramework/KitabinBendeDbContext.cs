@@ -1,5 +1,6 @@
 ﻿using System;
 using KitabinBende.Entities.Concrete;
+using KitabinBende.Entities.ComplexTypes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -43,6 +44,9 @@ namespace KitabinBende.DataAccess.Concrete.EntityFramework
         public virtual DbSet<TransactionStatus> TransactionStatus { get; set; }
         public virtual DbSet<TransactionType> TransactionType { get; set; }
         public virtual DbSet<UserAddress> UserAddress { get; set; }
+        public virtual DbQuery<GetAllSubCategoryIdsResult> GetAllSubCategoryIds { get; set; }
+        public virtual DbQuery<GetAllParentCategoryResult> GetAllParentCategory { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -350,22 +354,36 @@ namespace KitabinBende.DataAccess.Concrete.EntityFramework
                     .HasConstraintName("FK_BookTranslator_Book");
             });
 
+            //modelBuilder.Entity<Category>(entity =>
+            //{
+            //    entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
+            //    entity.Property(e => e.ParentCategoryId).HasColumnName("ParentCategoryID");
+            //    entity.Property(e => e.CategoryLevel)
+            //       .IsRequired();                   
+            //    entity.Property(e => e.CategoryName)
+            //        .HasMaxLength(50)
+            //        .IsUnicode(false);
+            //    entity.HasOne(d => d.Category2)
+            //       .WithMany(p => p.Category1)
+            //       .HasForeignKey(d => d.ParentCategoryId)
+            //       .OnDelete(DeleteBehavior.ClientSetNull)
+            //       .HasConstraintName("FK_Category_Category");
+            //});
             modelBuilder.Entity<Category>(entity =>
             {
                 entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
-                entity.Property(e => e.ParentCategoryId).HasColumnName("ParentCategoryID");
-                entity.Property(e => e.CategoryLevel)
-                   .IsRequired();                   
+
                 entity.Property(e => e.CategoryName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
-                entity.HasOne(d => d.Category2)
-                   .WithMany(p => p.Category1)
-                   .HasForeignKey(d => d.ParentCategoryId)
-                   .OnDelete(DeleteBehavior.ClientSetNull)
-                   .HasConstraintName("FK_Category_Category");
-            });
 
+                entity.Property(e => e.ParentCategoryId).HasColumnName("ParentCategoryID");
+
+                entity.HasOne(d => d.ParentCategory)
+                    .WithMany(p => p.InverseParentCategory)
+                    .HasForeignKey(d => d.ParentCategoryId)
+                    .HasConstraintName("FK_Category_Category");
+            });
             modelBuilder.Entity<City>(entity =>
             {
                 entity.Property(e => e.CityId).HasColumnName("CityID");
@@ -574,6 +592,10 @@ namespace KitabinBende.DataAccess.Concrete.EntityFramework
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_UserAddress_AspNetUsers");
             });
+
+
         }
+
+
     }
 }

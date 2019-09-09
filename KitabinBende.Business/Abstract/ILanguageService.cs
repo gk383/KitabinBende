@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KitabinBende.Business.Abstract
 {
-    interface ILanguageService
+    public interface ILanguageService
     {
         List<Language> GetAll();
         Language GetByID(int languageID);

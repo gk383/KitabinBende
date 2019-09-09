@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KitabinBende.Business.Abstract
 {
-    interface IBookCommentService
+    public interface IBookCommentService
     {
         List<BookComment> GetByBookID(int bookID);
         List<BookComment> GetByUserID(int userID);

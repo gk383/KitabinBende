@@ -1,5 +1,6 @@
 ﻿using KitabinBende.Business.Abstract;
 using KitabinBende.DataAccess.Abstract;
+using KitabinBende.Entities.ComplexTypes;
 using KitabinBende.Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -57,21 +58,7 @@ namespace KitabinBende.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public Dictionary<Category, int> GetCategoriesForList(List<Library> libraryList)
-        {
-            List<Category> _Categories = new List<Category>();
-            Dictionary<Category, int> returnData = new Dictionary<Category, int>();
-            foreach (var itemLibraryLoop in libraryList)
-            {
-                foreach (var itemBookCategoryLoop in itemLibraryLoop.Book.BookCategory)
-                {
-                    _Categories.Add(itemBookCategoryLoop.Category);
-                }
-            }
-
-            returnData = _Categories.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
-            return returnData;
-        }
+        
 
         public Dictionary<Language, int> GetLanguagesForList(List<Library> libraryList)
         {
@@ -86,10 +73,17 @@ namespace KitabinBende.Business.Concrete
             return returnData;
         }
 
-        public List<Library> GetListing()
+        public List<Library> GetListing(List<Category> Categories)
         {
-            return _LibraryDal.GetListWithRelations();
+
+            return _LibraryDal.GetListWithRelations(
+                x => x.Book.BookCategory.Any(
+                    bc => Categories.Select(ci=>ci.CategoryId).Contains(bc.CategoryId)
+                    )
+                ).GroupBy(g => g.Book).Select(x => x.FirstOrDefault()).ToList();            
         }
+
+       
 
         public Dictionary<Publisher, int> GetPublisherForList(List<Library> libraryList)
         {

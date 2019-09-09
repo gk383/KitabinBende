@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KitabinBende.Business.Abstract
 {
-    interface IBookImageService
+    public interface IBookImageService
     {
         List<BookImage> GetByBookID(int bookID);
 

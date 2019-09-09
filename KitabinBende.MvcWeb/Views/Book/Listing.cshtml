@@ -12,8 +12,13 @@
             <div class="col-lg-12">
                 <div class="breadcrumbs-menu">
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#" class="active">shop</a></li>
+                        <li><a href="/">Anasayfa</a></li>
+                        @foreach (var itemCategoryListForBreadcrumbs in Model.CategoryListForBreadcrumbs)
+                        {
+                            <li>
+                                <a href="/book/listing/@itemCategoryListForBreadcrumbs.CategoryId">@itemCategoryListForBreadcrumbs.CategoryName</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
@@ -33,19 +38,19 @@
                     <div class="left-title mb-20">
                         <h4>Kategori</h4>
                     </div>
-                    <div class="left-menu mb-30">
+                    <div class="left-menu mb-30" style="max-height: 400px;overflow-y: auto;padding-right: 10px;">
 
                         <ul>
-                            @foreach (var itemCategoryForFilter in Model.CategoriesListForFilter)
+                            @foreach (var itemCategoryForFilter in Model.CategoryListForFilter)
                             {
-                                <li><a href="#">@itemCategoryForFilter.Key.CategoryName<span>(@itemCategoryForFilter.Value)</span></a></li>
+                                <li><a href="/book/listing/@itemCategoryForFilter.Key.CategoryId">@itemCategoryForFilter.Key.CategoryName<span>(@itemCategoryForFilter.Value)</span></a></li>
                             }
                         </ul>
                     </div>
                     <div class="left-title mb-20">
                         <h4>Dil</h4>
                     </div>
-                    <div class="left-menu mb-30">
+                    <div class="left-menu mb-30" style="max-height: 400px;overflow-y: auto;padding-right: 10px;">
                         <ul>
                             @foreach (var itemLanguageForFilter in Model.LanguagesListForFilter)
                             {
@@ -56,7 +61,7 @@
                     <div class="left-title mb-20">
                         <h4>Yazar</h4>
                     </div>
-                    <div class="left-menu mb-30">
+                    <div class="left-menu mb-30" style="max-height: 400px;overflow-y: auto;padding-right: 10px;">
                         <ul>
                             @foreach (var itemAuthorForFilter in Model.AuthorListForFilter)
                             {
@@ -68,7 +73,7 @@
                     <div class="left-title mb-20">
                         <h4>Yayınevi</h4>
                     </div>
-                    <div class="left-menu mb-30">
+                    <div class="left-menu mb-30" style="max-height: 400px;overflow-y: auto;padding-right: 10px;">
                         <ul>
                             @foreach (var itemPublisherForFilter in Model.PublisherListForFilter)
                             {
@@ -147,7 +152,7 @@
                                             <div class="product-wrapper mb-40">
                                                 <div class="product-img">
                                                     <a href="#">
-                                                        <img src="/BookPhotos/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().BookId/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().Url" alt="@ListLoopItem.Book.BookName" class="primary" style="width:256px; height:400px" />
+                                                        <img src="/BookPhotos/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().BookId/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().Url" alt="@ListLoopItem.Book.BookName" class="primary" style="width:256px; height:350px" />
                                                     </a>
                                                     <div class="quick-view">
                                                         <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
@@ -180,41 +185,47 @@
 
 
                                                     </div>
-                                                    <h4><a href="#">@(ListLoopItem.Book.BookName.Length>20
-                                                                ?ListLoopItem.Book.BookName.Substring(0,20)+".."
-                                                                :ListLoopItem.Book.BookName)</a></h4>
-                                                    <div class="product-price">
-                                                        <ul>
-                                                            @foreach (var AuthorNameLoopItem in ListLoopItem.Book.BookAuthor)
-                                                            {
-                                                                <li>@(
-                                                                    AuthorNameLoopItem.Author.AuthorName.Length>15
-                                                                    ?AuthorNameLoopItem.Author.AuthorName.Substring(0,15)+".."
-                                                                    :AuthorNameLoopItem.Author.AuthorName
-                                                                    )</li>
-                                                            }
-                                                            @(ListLoopItem.Book.BookAuthor.Count>0 
-                                                                ? Html.Raw("")
-                                                                : Html.Raw("<li>-</li>"))
-                                                            
+                                                    <h4>
+                                                        <a href="#">
+                                                            @(ListLoopItem.Book.BookName.Length > 20
+                                                    ? ListLoopItem.Book.BookName.Substring(0, 20) + ".."
+                                                    : ListLoopItem.Book.BookName)
+                                                    </a>
+                                                </h4>
+                                                <div class="product-price">
+                                                    <ul>
+                                                        @foreach (var AuthorNameLoopItem in ListLoopItem.Book.BookAuthor)
+                                                        {
+                                                            <li>
+                                                                @(
+                                                                    AuthorNameLoopItem.Author.AuthorName.Length > 15
+                                                                    ? AuthorNameLoopItem.Author.AuthorName.Substring(0, 15) + ".."
+                                                                    : AuthorNameLoopItem.Author.AuthorName
+                                                            )
+                                                        </li>
+                                                    }
+                                                        @(ListLoopItem.Book.BookAuthor.Count > 0
+                                                            ? Html.Raw("")
+                                                            : Html.Raw("<li>-</li>"))
 
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <div class="product-link">
-                                                    <div class="product-button">
-                                                        <a href="#" title="Detay"><i class="fa fa-book"></i>Detay</a>
-                                                    </div>
-                                                    <div class="add-to-link">
-                                                        <ul>
-                                                            <li><a href="product-details.html" title="Detay"><i class="fa fa-external-link"></i></a></li>
-                                                        </ul>
-                                                    </div>
+
+                                                    </ul>
                                                 </div>
                                             </div>
-                                            <!-- single-product-end -->
+                                            <div class="product-link">
+                                                <div class="product-button">
+                                                    <a href="#" title="Detay"><i class="fa fa-book"></i>Detay</a>
+                                                </div>
+                                                <div class="add-to-link">
+                                                    <ul>
+                                                        <li><a href="product-details.html" title="Detay"><i class="fa fa-external-link"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
-                                    }
+                                        <!-- single-product-end -->
+                                    </div>
+                                }
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="list">
@@ -227,7 +238,7 @@
                                                 <div class="product-wrapper-2">
                                                     <div class="product-img">
                                                         <a href="#">
-                                                            <img src="/BookPhotos/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().BookId/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().Url" alt="@ListLoopItem.Book.BookName" class="primary" />
+                                                            <img src="/BookPhotos/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().BookId/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().Url" alt="@ListLoopItem.Book.BookName" class="primary" style="width:256px; height:400px" />
                                                         </a>
                                                     </div>
                                                 </div>
@@ -289,12 +300,11 @@
                                     <b>Sayfa :</b> @pageInfo
                                 </p>
                             </div>
-                            <book-list-pager 
-                                             current-page="@Model.CurrentPage" 
-                                             page-count="@Model.PageCount" 
+                            <book-list-pager current-page="@Model.CurrentPage"
+                                             page-count="@Model.PageCount"
                                              page-size="@Model.PageSize"
                                              base-url="/book/listing"
-                                             >
+                                             current-category-id="@Model.CurrentCategoryID">
                             </book-list-pager>
                             @*<div class="page-number">
                                 <ul>
@@ -304,11 +314,11 @@
                                     <li><a href="#">4</a></li>
                                     <li><a href="#" class="angle"><i class="fa fa-angle-right"></i></a></li>
                                 </ul>*@
-                            </div>
                         </div>
-                        <!-- pagination-area-end -->
                     </div>
+                    <!-- pagination-area-end -->
                 </div>
             </div>
+        </div>
         </div>
         <!-- shop-main-area-end -->

@@ -1,4 +1,5 @@
-﻿using KitabinBende.Entities.Concrete;
+﻿using KitabinBende.Entities.ComplexTypes;
+using KitabinBende.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,8 +12,7 @@ namespace KitabinBende.Business.Abstract
         List<Library> GetByBookID(int bookID);
         Library GetByID(int libraryID);
 
-        List<Library> GetListing();
-        Dictionary<Category, int> GetCategoriesForList(List<Library> libraryList);
+        List<Library> GetListing(List<Category> Categories);
         Dictionary<Language, int> GetLanguagesForList(List<Library> libraryList);
         Dictionary<Author, int> GetAuthorForList(List<Library> libraryList);
         Dictionary<Publisher, int> GetPublisherForList(List<Library> libraryList);

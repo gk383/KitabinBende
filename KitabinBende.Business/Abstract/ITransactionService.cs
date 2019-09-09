@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KitabinBende.Business.Abstract
 {
-    interface ITransactionService
+    public interface ITransactionService
     {
         List<Transaction> GetAllInProgress();
         List<Transaction> GetAllExpired();

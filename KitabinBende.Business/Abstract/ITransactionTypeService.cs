@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KitabinBende.Business.Abstract
 {
-    interface ITransactionTypeService
+    public interface ITransactionTypeService
     {
         List<TransactionType> GetAll();
         TransactionType GetByID(int TransactionTypeID);

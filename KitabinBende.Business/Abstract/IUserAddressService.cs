@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KitabinBende.Business.Abstract
 {
-    interface IUserAddressService
+    public interface IUserAddressService
     {
         List<UserAddress> GetByUserID(int userID);
         UserAddress GetActiveByUserID(int userID);

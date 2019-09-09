@@ -20,6 +20,8 @@ namespace KitabinBende.MvcWeb.TagHelpers
         public int CurrentPage { get; set; }
         [HtmlAttributeName("base-url")]
         public string BaseUrl { get; set; }
+        [HtmlAttributeName("current-category-id")]
+        public int CurrentCategoryID { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
@@ -31,7 +33,7 @@ namespace KitabinBende.MvcWeb.TagHelpers
             for (int i = 1; i <= PageCount; i++)
             {
                 stringBuilder.AppendFormat("<li class='{0}'>", i == CurrentPage ? "active" : "");
-                stringBuilder.AppendFormat("<a href='{0}?page={1}'>{1}</a>",BaseUrl,i);
+                stringBuilder.AppendFormat("<a href='{0}/{1}?page={2}'>{2}</a>",BaseUrl,CurrentCategoryID,i);
                 stringBuilder.Append("</li>");
             }
             stringBuilder.Append("</ul>");

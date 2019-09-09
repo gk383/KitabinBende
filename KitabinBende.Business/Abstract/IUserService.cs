@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KitabinBende.Business.Abstract
 {
-    interface IUserService
+    public interface IUserService
     {
         AspNetUsers GetByID(int authorTypeID);
 
