@@ -28,6 +28,9 @@ namespace KitabinBende.MvcWeb
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICategoryDal, EfCategoryDal>();
 
+            services.AddScoped<IAuthorService, AuthorManager>();
+            services.AddScoped<IAuthorDal, EfAuthorDal>();
+
             services.AddDbContext<CustomIdentityDbContext>
                 (options => options.UseSqlServer("Server=.;Database=KitabinBendeDb;user id=sa;password=123qaz;Trusted_Connection=True;"));
 

@@ -16,7 +16,9 @@
                         @foreach (var itemCategoryListForBreadcrumbs in Model.CategoryListForBreadcrumbs)
                         {
                             <li>
-                                <a href="/book/listing/@itemCategoryListForBreadcrumbs.CategoryId">@itemCategoryListForBreadcrumbs.CategoryName</a>
+                                <a href="/book/listing/@itemCategoryListForBreadcrumbs.CategoryId">
+                                @itemCategoryListForBreadcrumbs.CategoryName
+                                </a>
                             </li>
                         }
                     </ul>
@@ -43,7 +45,15 @@
                         <ul>
                             @foreach (var itemCategoryForFilter in Model.CategoryListForFilter)
                             {
-                                <li><a href="/book/listing/@itemCategoryForFilter.Key.CategoryId">@itemCategoryForFilter.Key.CategoryName<span>(@itemCategoryForFilter.Value)</span></a></li>
+                                <li>
+                                    <a href="/book/listing/@(itemCategoryForFilter.Key.CategoryId
+                                    + (string.IsNullOrEmpty(string.Join("", Model.GetQueryStringParametes))
+                                    ? ""
+                                    : ("?page=1"+string.Join("",Model.GetQueryStringParametes))))">
+                                        @itemCategoryForFilter.Key.CategoryName
+                                        <span>(@itemCategoryForFilter.Value)</span>
+                                    </a>
+                                </li>
                             }
                         </ul>
                     </div>
@@ -65,7 +75,17 @@
                         <ul>
                             @foreach (var itemAuthorForFilter in Model.AuthorListForFilter)
                             {
-                                <li><a href="#">@itemAuthorForFilter.Key.AuthorName<span>(@itemAuthorForFilter.Value)</span></a></li>
+                                <li>
+                                    <a href="/book/listing/@(Model.CurrentCategoryID
+                                    +  ("?page=1" + 
+                                    (string.Join("",Model.GetQueryStringParametes.Where(x=>!x.Contains("authorId")))+"&authorId="+itemAuthorForFilter.Key.AuthorId))
+                                    )">
+                                        @itemAuthorForFilter.Key.AuthorName
+                                        <span>
+                                            (@itemAuthorForFilter.Value)
+                                        </span>
+                                    </a>
+                                </li>
                             }
                         </ul>
                     </div>
@@ -109,7 +129,7 @@
                             <p>
                                 <b>Sonuç :</b> @Model.TotalBookCount
                                 <b>Sayfa :</b>@{
-                                    string pageInfo = ((Model.CurrentPage - 1) * Model.PageSize).ToString()
+                                    string pageInfo = (((Model.CurrentPage - 1) * Model.PageSize) + 1).ToString()
                                           + " - "
                                           + (((Model.CurrentPage - 1) * Model.PageSize) + Model.PageSize).ToString();} @pageInfo
                                     </p>
@@ -190,42 +210,42 @@
                                                             @(ListLoopItem.Book.BookName.Length > 20
                                                     ? ListLoopItem.Book.BookName.Substring(0, 20) + ".."
                                                     : ListLoopItem.Book.BookName)
-                                                    </a>
-                                                </h4>
-                                                <div class="product-price">
-                                                    <ul>
-                                                        @foreach (var AuthorNameLoopItem in ListLoopItem.Book.BookAuthor)
-                                                        {
-                                                            <li>
-                                                                @(
-                                                                    AuthorNameLoopItem.Author.AuthorName.Length > 15
-                                                                    ? AuthorNameLoopItem.Author.AuthorName.Substring(0, 15) + ".."
-                                                                    : AuthorNameLoopItem.Author.AuthorName
-                                                            )
-                                                        </li>
-                                                    }
-                                                        @(ListLoopItem.Book.BookAuthor.Count > 0
-                                                            ? Html.Raw("")
-                                                            : Html.Raw("<li>-</li>"))
+                                                        </a>
+                                                    </h4>
+                                                    <div class="product-price">
+                                                        <ul>
+                                                            @foreach (var AuthorNameLoopItem in ListLoopItem.Book.BookAuthor)
+                                                            {
+                                                                <li>
+                                                                    @(
+                                                                        AuthorNameLoopItem.Author.AuthorName.Length > 15
+                                                                        ? AuthorNameLoopItem.Author.AuthorName.Substring(0, 15) + ".."
+                                                                        : AuthorNameLoopItem.Author.AuthorName
+                                                                    )
+                                                                </li>
+                                                            }
+                                                            @(ListLoopItem.Book.BookAuthor.Count > 0
+                                                                ? Html.Raw("")
+                                                                : Html.Raw("<li>-</li>"))
 
 
-                                                    </ul>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="product-link">
+                                                    <div class="product-button">
+                                                        <a href="#" title="Detay"><i class="fa fa-book"></i>Detay</a>
+                                                    </div>
+                                                    <div class="add-to-link">
+                                                        <ul>
+                                                            <li><a href="product-details.html" title="Detay"><i class="fa fa-external-link"></i></a></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="product-link">
-                                                <div class="product-button">
-                                                    <a href="#" title="Detay"><i class="fa fa-book"></i>Detay</a>
-                                                </div>
-                                                <div class="add-to-link">
-                                                    <ul>
-                                                        <li><a href="product-details.html" title="Detay"><i class="fa fa-external-link"></i></a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
+                                            <!-- single-product-end -->
                                         </div>
-                                        <!-- single-product-end -->
-                                    </div>
-                                }
+                                    }
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="list">
@@ -304,7 +324,8 @@
                                              page-count="@Model.PageCount"
                                              page-size="@Model.PageSize"
                                              base-url="/book/listing"
-                                             current-category-id="@Model.CurrentCategoryID">
+                                             current-category-id="@Model.CurrentCategoryID"
+                                             query-string-params="@(string.Join("",Model.GetQueryStringParametes))">
                             </book-list-pager>
                             @*<div class="page-number">
                                 <ul>

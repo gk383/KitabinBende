@@ -3,6 +3,7 @@ using KitabinBende.DataAccess.Abstract;
 using KitabinBende.Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace KitabinBende.Business.Concrete
@@ -42,6 +43,22 @@ namespace KitabinBende.Business.Concrete
         public void Update(Author author)
         {
             _IAuthorDal.Update(author);
+        }
+
+        public Dictionary<Author, int> GetAuthorForList(List<Library> libraryList)
+        {
+            List<Author> _Authors = new List<Author>();
+            Dictionary<Author, int> returnData = new Dictionary<Author, int>();
+            foreach (var itemLibraryLoop in libraryList)
+            {
+                foreach (var itemBookAuthorLoop in itemLibraryLoop.Book.BookAuthor)
+                {
+                    _Authors.Add(itemBookAuthorLoop.Author);
+                }
+            }
+
+            returnData = _Authors.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
+            return returnData;
         }
     }
 }

@@ -27,22 +27,6 @@ namespace KitabinBende.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public Dictionary<Author, int> GetAuthorForList(List<Library> libraryList)
-        {
-            List<Author> _Authors = new List<Author>();
-            Dictionary<Author, int> returnData = new Dictionary<Author, int>();
-            foreach (var itemLibraryLoop in libraryList)
-            {
-                foreach (var itemBookAuthorLoop in itemLibraryLoop.Book.BookAuthor)
-                {
-                    _Authors.Add(itemBookAuthorLoop.Author);
-                }
-            }
-
-            returnData = _Authors.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
-            return returnData;
-        }
-
         public List<Library> GetByBookID(int bookID)
         {
             return _LibraryDal.GetList(x => x.BookId == bookID);
@@ -58,8 +42,6 @@ namespace KitabinBende.Business.Concrete
             throw new NotImplementedException();
         }
 
-        
-
         public Dictionary<Language, int> GetLanguagesForList(List<Library> libraryList)
         {
             List<Language> _Languages = new List<Language>();
@@ -73,17 +55,16 @@ namespace KitabinBende.Business.Concrete
             return returnData;
         }
 
-        public List<Library> GetListing(List<Category> Categories)
+        public List<Library> GetListing(List<Category> categories, int authorId)
         {
 
-            return _LibraryDal.GetListWithRelations(
-                x => x.Book.BookCategory.Any(
-                    bc => Categories.Select(ci=>ci.CategoryId).Contains(bc.CategoryId)
+            return _LibraryDal.GetListWithRelations(x =>
+            (x.Book.BookCategory.Any(bc => categories.Select(ci => ci.CategoryId).Contains(bc.CategoryId))
+            &&(authorId == 0 || x.Book.BookAuthor.Any(ba=>ba.AuthorId==authorId))
                     )
-                ).GroupBy(g => g.Book).Select(x => x.FirstOrDefault()).ToList();            
+                ).GroupBy(g => g.Book).Select(x => x.FirstOrDefault()).ToList();
         }
 
-       
 
         public Dictionary<Publisher, int> GetPublisherForList(List<Library> libraryList)
         {
@@ -91,7 +72,7 @@ namespace KitabinBende.Business.Concrete
             Dictionary<Publisher, int> returnData = new Dictionary<Publisher, int>();
             foreach (var itemLibraryLoop in libraryList)
             {
-                _Publishers.Add(itemLibraryLoop.Book.Publisher);                
+                _Publishers.Add(itemLibraryLoop.Book.Publisher);
             }
 
             returnData = _Publishers.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
