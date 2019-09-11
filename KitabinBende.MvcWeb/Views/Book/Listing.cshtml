@@ -17,7 +17,7 @@
                         {
                             <li>
                                 <a href="/book/listing/@itemCategoryListForBreadcrumbs.CategoryId">
-                                @itemCategoryListForBreadcrumbs.CategoryName
+                                    @itemCategoryListForBreadcrumbs.CategoryName
                                 </a>
                             </li>
                         }
@@ -64,7 +64,17 @@
                         <ul>
                             @foreach (var itemLanguageForFilter in Model.LanguagesListForFilter)
                             {
-                                <li><a href="#">@itemLanguageForFilter.Key.LanguageName<span>(@itemLanguageForFilter.Value)</span></a></li>
+                                <li>
+                                    <a href="/book/listing/@(Model.CurrentCategoryID
+                                    +  ("?page=1" +
+                                    (string.Join("",Model.GetQueryStringParametes.Where(x=>!x.ToLower().Contains("languageid")))+"&languageId="+itemLanguageForFilter.Key.LanguageId))
+                                    )">
+                                        @itemLanguageForFilter.Key.LanguageName
+                                        <span>
+                                            (@itemLanguageForFilter.Value)
+                                        </span>
+                                    </a>
+                                </li>
                             }
                         </ul>
                     </div>
@@ -77,8 +87,8 @@
                             {
                                 <li>
                                     <a href="/book/listing/@(Model.CurrentCategoryID
-                                    +  ("?page=1" + 
-                                    (string.Join("",Model.GetQueryStringParametes.Where(x=>!x.Contains("authorId")))+"&authorId="+itemAuthorForFilter.Key.AuthorId))
+                                    +  ("?page=1" +
+                                    (string.Join("",Model.GetQueryStringParametes.Where(x=>!x.ToLower().Contains("authorid")))+"&authorId="+itemAuthorForFilter.Key.AuthorId))
                                     )">
                                         @itemAuthorForFilter.Key.AuthorName
                                         <span>
@@ -97,7 +107,17 @@
                         <ul>
                             @foreach (var itemPublisherForFilter in Model.PublisherListForFilter)
                             {
-                                <li><a href="#">@itemPublisherForFilter.Key.PublisherName<span>(@itemPublisherForFilter.Value)</span></a></li>
+                                <li>
+                                    <a href="/book/listing/@(Model.CurrentCategoryID
+                                    +  ("?page=1" +
+                                    (string.Join("",Model.GetQueryStringParametes.Where(x=>!x.ToLower().Contains("publisherid")))+"&publisherId="+itemPublisherForFilter.Key.PublisherId))
+                                    )">
+                                        @itemPublisherForFilter.Key.PublisherName
+                                        <span>
+                                            (@itemPublisherForFilter.Value)
+                                        </span>
+                                    </a>
+                                </li>
                             }
                         </ul>
                     </div>
@@ -139,23 +159,27 @@
                                 <div class="control">
                                     <span>Sayfalama</span>
                                     <!-- chosen-start -->
-                                    <select data-placeholder="Default Sorting" style="width:50px;" class="chosen-select" tabindex="1">
-                                        <option value="20">20</option>
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
+                                    <select data-placeholder="Default Sorting" style="width:50px;" class="chosen-select" tabindex="1"
+                                            onchange="location ='/book/listing/@(Model.CurrentCategoryID
+                                    +  ("?page=1" +(string.Join("",Model.GetQueryStringParametes.Where(x=>!x.ToLower().Contains("pagesize")))+"&pageSize=")))'+this.value;">
+                                        <!option @(Model.PageSize == 20 ? "selected" : "") value="20">20</!option>
+                                        <!option @(Model.PageSize == 50 ? "selected" : "") value="50">50</!option>
+                                        <!option @(Model.PageSize == 100 ? "selected" : "") value="100">100</!option>
                                     </select>
                                     <!-- chosen-end -->
                                 </div>
                             </div>
                             <div class="toolbar-sorter">
                                 <span>Sırala</span>
-                                <select id="sorter" class="sorter-options" data-role="sorter">
-                                    <option selected="selected" value="position"> Yeni </option>
-                                    <option value="position"> A-Z </option>
-                                    <option value="name"> Z-A </option>
-                                    <option value="price"> En beğenilen </option>
-                                    <option value="price"> En çok takas edilen </option>
-                                    <option value="price"> Sitede en çok olan </option>
+                                <select id="sorter" class="sorter-options" data-role="sorter"
+                                        onchange="location ='/book/listing/@(Model.CurrentCategoryID
+                                    +  ("?page=1" +(string.Join("",Model.GetQueryStringParametes.Where(x=>!x.ToLower().Contains("pagesort")))+"&pageSortId=")))'+this.value;">
+                                    @foreach (var itemSortOptions in Model.SortOptions)
+                                    {
+                                        <!option @(Model.CurrentSortID == itemSortOptions.SortID ? "selected" : "") value="@itemSortOptions.SortID">
+                                        @itemSortOptions.SortName</!option>
+                                    }
+
                                 </select>
                                 @*<a href="#"><i class="fa fa-arrow-up"></i></a>*@
                             </div>

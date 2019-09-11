@@ -1,4 +1,5 @@
-﻿using KitabinBende.Entities.Concrete;
+﻿using KitabinBende.Entities.ComplexTypes;
+using KitabinBende.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,9 @@ namespace KitabinBende.MvcWeb.Models.ViewModels
         public int CurrentCategoryID { get; set; }
         public List<Category> CategoryListForBreadcrumbs { get; set; }
         public int CurrentAuthorID { get; internal set; }
-
+        public int CurrentPublisherID { get; internal set; }
+        public int CurrentLanguageID { get; internal set; }
+        public int CurrentSortID { get; internal set; }
         public List<string> GetQueryStringParametes
         {
             get
@@ -33,8 +36,13 @@ namespace KitabinBende.MvcWeb.Models.ViewModels
                List<string> returnData = new List<string>();
                 returnData.Add(PageSize == _DefaultPageSize ? "" : "&pageSize=" + PageSize);
                 returnData.Add(CurrentAuthorID == 0 ? "" : "&authorId=" + CurrentAuthorID);
+                returnData.Add(CurrentPublisherID == 0 ? "" : "&publisherId=" + CurrentPublisherID);
+                returnData.Add(CurrentLanguageID == 0 ? "" : "&languageId=" + CurrentLanguageID);
+                returnData.Add(CurrentSortID == 0 ? "" : "&pageSortId=" + CurrentSortID);
                 return returnData;
             }
         }
+
+        public List<SortOption<IGrouping<Book, Library>, object>> SortOptions { get; internal set; }
     }
 }

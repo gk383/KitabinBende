@@ -9,5 +9,7 @@ namespace KitabinBende.Business.Abstract
     {
         List<Language> GetAll();
         Language GetByID(int languageID);
+
+        Dictionary<Language, int> GetLanguagesForList(List<Library> libraryList);
     }
 }

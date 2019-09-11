@@ -5,6 +5,7 @@ using KitabinBende.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace KitabinBende.Business.Concrete
@@ -27,61 +28,87 @@ namespace KitabinBende.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public List<Library> GetByBookID(int bookID)
+        public void Update(Library library)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public virtual List<Library> GetByBookID(int bookID)
         {
             return _LibraryDal.GetList(x => x.BookId == bookID);
         }
 
-        public Library GetByID(int libraryID)
+        public virtual Library GetByID(int libraryID)
         {
             return _LibraryDal.Get(x => x.LibraryId == libraryID);
         }
 
-        public List<Library> GetByUserID(int userID)
+        public virtual List<Library> GetByUserID(int userID)
         {
             throw new NotImplementedException();
         }
 
-        public Dictionary<Language, int> GetLanguagesForList(List<Library> libraryList)
+        public virtual List<Library> GetListing(List<Category> categories, int authorId = 0, int publisherId = 0, int languageId = 0, int pageSortId = 0)
         {
-            List<Language> _Languages = new List<Language>();
-            Dictionary<Language, int> returnData = new Dictionary<Language, int>();
-            foreach (var itemLibraryLoop in libraryList)
+
+            SortOption<IGrouping<Book, Library>, object> _sortOption =
+             GetSortOptions().Where(x => x.SortID == pageSortId).FirstOrDefault();
+
+            var retunData = _LibraryDal.GetListWithRelations(x =>
+             (x.Book.BookCategory.Any(bc => categories.Select(ci => ci.CategoryId).Contains(bc.CategoryId))
+             && (authorId == 0 || x.Book.BookAuthor.Any(ba => ba.AuthorId == authorId))
+             && (publisherId == 0 || x.Book.PublisherId == publisherId)
+             && (languageId == 0 || x.Book.LanguageId == languageId)
+             )).GroupBy(g => g.Book);
+
+            if (_sortOption.isDescending)
             {
-                _Languages.Add(itemLibraryLoop.Book.Language);
+                return retunData.OrderByDescending(_sortOption.SortFunc).Select(x => x.FirstOrDefault()).ToList();
             }
-
-            returnData = _Languages.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
-            return returnData;
-        }
-
-        public List<Library> GetListing(List<Category> categories, int authorId)
-        {
-
-            return _LibraryDal.GetListWithRelations(x =>
-            (x.Book.BookCategory.Any(bc => categories.Select(ci => ci.CategoryId).Contains(bc.CategoryId))
-            &&(authorId == 0 || x.Book.BookAuthor.Any(ba=>ba.AuthorId==authorId))
-                    )
-                ).GroupBy(g => g.Book).Select(x => x.FirstOrDefault()).ToList();
-        }
-
-
-        public Dictionary<Publisher, int> GetPublisherForList(List<Library> libraryList)
-        {
-            List<Publisher> _Publishers = new List<Publisher>();
-            Dictionary<Publisher, int> returnData = new Dictionary<Publisher, int>();
-            foreach (var itemLibraryLoop in libraryList)
+            else
             {
-                _Publishers.Add(itemLibraryLoop.Book.Publisher);
+                return retunData.OrderBy(_sortOption.SortFunc).Select(x => x.FirstOrDefault()).ToList();
             }
-
-            returnData = _Publishers.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
-            return returnData;
         }
 
-        public void Update(Library library)
+        public virtual List<SortOption<IGrouping<Book, Library>, object>> GetSortOptions()
         {
-            throw new NotImplementedException();
+
+            List<SortOption<IGrouping<Book, Library>, object>> returnData =
+                new List<SortOption<IGrouping<Book, Library>, object>>();
+
+            returnData.Add(new SortOption<IGrouping<Book, Library>, object>
+            {
+                SortID = 0,
+                SortName = "Yeni",
+                isDescending = false,
+                SortFunc = x => x.Key.FirstPublishYear.Value
+            });
+            returnData.Add(new SortOption<IGrouping<Book, Library>, object>
+            {
+                SortID = 1,
+                SortName = "A-Z",
+                isDescending = false,
+                SortFunc = x => x.Key.BookName
+            });
+            returnData.Add(new SortOption<IGrouping<Book, Library>, object>
+            {
+                SortID = 2,
+                SortName = "Z-A",
+                isDescending = true,
+                SortFunc = x => x.Key.BookName
+            });
+            //returnData.Add(new SortOption<IGrouping<Book, Library>, object>
+            //{
+            //    SortID = 3,
+            //    SortName = "En Beğenilen",
+            //    isDescending = false,
+            //    SortFunc = x => x.Key.BookStarPoint.Average(y => y.Point)
+            //});
+
+
+            return returnData;
         }
 
 

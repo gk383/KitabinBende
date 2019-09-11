@@ -8,7 +8,7 @@ using System.Text;
 
 namespace KitabinBende.Business.Concrete
 {
-   public class AuthorManager : IAuthorService
+    public class AuthorManager : IAuthorService
     {
         private IAuthorDal _IAuthorDal;
         public AuthorManager(IAuthorDal authorDal)
@@ -45,7 +45,7 @@ namespace KitabinBende.Business.Concrete
             _IAuthorDal.Update(author);
         }
 
-        public Dictionary<Author, int> GetAuthorForList(List<Library> libraryList)
+        public virtual Dictionary<Author, int> GetAuthorForList(List<Library> libraryList)
         {
             List<Author> _Authors = new List<Author>();
             Dictionary<Author, int> returnData = new Dictionary<Author, int>();
@@ -57,7 +57,10 @@ namespace KitabinBende.Business.Concrete
                 }
             }
 
-            returnData = _Authors.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
+            returnData = _Authors.GroupBy(x => x)
+                .ToDictionary(g => g.Key, g => g.Count())
+                .OrderByDescending(x => x.Value).ThenBy(x => x.Key.AuthorName)
+                .ToDictionary(x => x.Key, x => x.Value);
             return returnData;
         }
     }

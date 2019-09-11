@@ -15,38 +15,46 @@ namespace KitabinBende.MvcWeb.Controllers
         private ILibraryService _LibraryService;
         private ICategoryService _CategoryService;
         private IAuthorService _AuthorService;
+        private IPublisherService _PublisherService;
+        private ILanguageService _LanguageService;
         private enum _DefaultValues
         {
             pageSize = 20
         }
-        public BookController(ILibraryService libraryService, ICategoryService categoryService, IAuthorService authorService)
+        public BookController(ILibraryService libraryService, ICategoryService categoryService, IAuthorService authorService, IPublisherService publisherService, ILanguageService languageService)
         {
             _LibraryService = libraryService;
             _CategoryService = categoryService;
             _AuthorService = authorService;
+            _PublisherService = publisherService;
+            _LanguageService = languageService;
         }
         [Route("Book/Listing/{categoryId}")]
         public IActionResult Listing(int categoryId, int page = 1,
-            int pageSize = (int)_DefaultValues.pageSize, int authorId = 0)
+            int pageSize = (int)_DefaultValues.pageSize, int authorId = 0, int publisherId=0,int languageId=0,int pageSortId = 0)
         {
 
             int _pageSize = pageSize == 0 ? (int)_DefaultValues.pageSize : pageSize;
             List<Category> _categoryWithChilds = _CategoryService.GetCategoryAndAllSubCategoryIds(categoryId);
-            List<Library> _LibraryList = _LibraryService.GetListing(_categoryWithChilds, authorId);
+            List<Library> _LibraryList = _LibraryService.GetListing(_categoryWithChilds, authorId, publisherId, languageId, pageSortId);
             BookListingViewModel returnData = new BookListingViewModel((int)_DefaultValues.pageSize)
             {
                 Library = _LibraryList.Skip((page - 1) * _pageSize).Take(_pageSize).ToList(),
                 CategoryListForFilter = _CategoryService.GetCategoriesForList(_LibraryList, categoryId),
                 CategoryListForBreadcrumbs = _CategoryService.GetCategoryAndAllParentCategories(categoryId),
-                LanguagesListForFilter = _LibraryService.GetLanguagesForList(_LibraryList),
+                LanguagesListForFilter = _LanguageService.GetLanguagesForList(_LibraryList),
                 AuthorListForFilter = _AuthorService.GetAuthorForList(_LibraryList),
-                PublisherListForFilter = _LibraryService.GetPublisherForList(_LibraryList),
+                PublisherListForFilter = _PublisherService.GetPublisherForList(_LibraryList),
+                SortOptions =_LibraryService.GetSortOptions(),
                 PageSize = pageSize,
                 PageCount = (int)Math.Ceiling(_LibraryList.Count / (double)_pageSize),
                 CurrentPage = page,
                 TotalBookCount = _LibraryList.Count(),
                 CurrentCategoryID = categoryId,
-                CurrentAuthorID = authorId
+                CurrentAuthorID = authorId,
+                CurrentPublisherID = publisherId,
+                CurrentLanguageID = languageId,
+                CurrentSortID = pageSortId
             };
 
             return View(returnData);

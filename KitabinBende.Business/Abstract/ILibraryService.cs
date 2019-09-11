@@ -2,6 +2,7 @@
 using KitabinBende.Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace KitabinBende.Business.Abstract
@@ -11,11 +12,8 @@ namespace KitabinBende.Business.Abstract
         List<Library> GetByUserID(int userID);
         List<Library> GetByBookID(int bookID);
         Library GetByID(int libraryID);
-        List<Library> GetListing(List<Category> categories, int authorId);
-        Dictionary<Language, int> GetLanguagesForList(List<Library> libraryList);
-        Dictionary<Publisher, int> GetPublisherForList(List<Library> libraryList);
-
-
+        List<Library> GetListing(List<Category> categories, int authorId,int publisherId,int languageId, int pageSort);
+        List<SortOption<IGrouping<Book, Library>, object>> GetSortOptions();
 
         void Add(Library library);
         void Update(Library library);

@@ -10,5 +10,7 @@ namespace KitabinBende.Business.Abstract
         List<Publisher> GetAll();
         Publisher GetByID(int publisherID);
         void Add(Publisher publisher);
+
+        Dictionary<Publisher, int> GetPublisherForList(List<Library> libraryList);
     }
 }

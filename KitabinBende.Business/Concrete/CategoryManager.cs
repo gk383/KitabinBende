@@ -31,7 +31,8 @@ namespace KitabinBende.Business.Concrete
             return _CategoryDal.GetList(x => x.ParentCategoryId == categoryID);
         }
 
-        public List<Category> GetCategoryAndAllSubCategoryIds(int categoryID)
+
+        public virtual List<Category> GetCategoryAndAllSubCategoryIds(int categoryID)
         {
             Category _MainCategory = _CategoryDal.Get(x => x.CategoryId == categoryID);
             List<Category> _AllSubCategory = new List<Category>();
@@ -48,28 +49,23 @@ namespace KitabinBende.Business.Concrete
 
         }
 
-        public List<Category> GetCategoryAndAllParentCategories(int categoryID)
+        public virtual List<Category> GetCategoryAndAllParentCategories(int categoryID)
         {
             Category _MainCategory = _CategoryDal.Get(x => x.CategoryId == categoryID);
             List<Category> _AllParentCategory = new List<Category>();
             if (_MainCategory != null)
             {
-                foreach (var itemGetAllParentCategoryLoop in _CategoryDal.GetAllParentCategory(categoryID).OrderBy(x=>x.CategoryLevel))
+                foreach (var itemGetAllParentCategoryLoop in _CategoryDal.GetAllParentCategory(categoryID).OrderBy(x => x.CategoryLevel))
                 {
                     _AllParentCategory.Add(_CategoryDal.Get(x => x.CategoryId == itemGetAllParentCategoryLoop.CategoryId));
-                }               
+                }
             }
             return _AllParentCategory;
 
 
         }
 
-        Category ICategoryService.GetByParentID(int categoryID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Dictionary<Category, int> GetCategoriesForList(List<Library> libraryList, int currentCategoryId)
+        public virtual Dictionary<Category, int> GetCategoriesForList(List<Library> libraryList, int currentCategoryId)
         {
             Category _CurrentCategory = GetByID(currentCategoryId);
             List<Category> _Categories = new List<Category>();
@@ -99,10 +95,14 @@ namespace KitabinBende.Business.Concrete
                 .GroupBy(x => x)
                 .ToDictionary(g => g.Key, g => g.Count());
 
+
             foreach (var itemCategoryIdsLoop in _GroupedCategoryIds)
             {
                 returnData.Add(_CategoryDal.Get(x => x.CategoryId == itemCategoryIdsLoop.Key), itemCategoryIdsLoop.Value);
             }
+
+            returnData = returnData.OrderByDescending(x => x.Value).ThenBy(x => x.Key.CategoryName)
+                .ToDictionary(x => x.Key, x => x.Value);
 
             return returnData;
         }
