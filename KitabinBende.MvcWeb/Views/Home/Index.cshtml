@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿@model KitabinBende.MvcWeb.Models.ViewModels.HomeIndexViewModel
+<!doctype html>
 <html class="no-js" lang="tr">
 <head>
     <meta charset="utf-8">
@@ -40,27 +41,37 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             @*<div class="language-area">
+            <ul>
+                <li>
+                    <img src="img/flag/1.jpg" alt="flag" /><a href="#">English<i class="fa fa-angle-down"></i></a>
+                    <div class="header-sub">
+                        <ul>
+                            <li><a href="#"><img src="img/flag/2.jpg" alt="flag" />france</a></li>
+                            <li><a href="#"><img src="img/flag/3.jpg" alt="flag" />croatia</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">USD $<i class="fa fa-angle-down"></i></a>
+                    <div class="header-sub dolor">
+                        <ul>
+                            <li><a href="#">EUR €</a></li>
+                            <li><a href="#">USD $</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>*@
+                            <div class="language-area">
                                 <ul>
                                     <li>
-                                        <img src="img/flag/1.jpg" alt="flag" /><a href="#">English<i class="fa fa-angle-down"></i></a>
-                                        <div class="header-sub">
-                                            <ul>
-                                                <li><a href="#"><img src="img/flag/2.jpg" alt="flag" />france</a></li>
-                                                <li><a href="#"><img src="img/flag/3.jpg" alt="flag" />croatia</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a href="#">USD $<i class="fa fa-angle-down"></i></a>
-                                        <div class="header-sub dolor">
-                                            <ul>
-                                                <li><a href="#">EUR €</a></li>
-                                                <li><a href="#">USD $</a></li>
-                                            </ul>
-                                        </div>
+                                        <span style="color:#fff;font-family:'Comic Sans MS';font-size:14px; background-color:#f07c29; padding:0 15px;">
+                                            <i class="fa fa-book" aria-hidden="true"></i> Kitabın Bende
+                                        </span>
                                     </li>
                                 </ul>
-                            </div>*@
+
+                            </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="account-area text-right">
@@ -75,7 +86,7 @@
             </div>
             <!-- header-top-area-end -->
             <!-- header-mid-area-start -->
-            <div class="header-mid-area ptb-40">
+            @*<div class="header-mid-area ptb-40">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -118,15 +129,10 @@
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li><a href="contact.html">contact</a></li>
+                                        <li><a href="#">Kitabın Bende Hakkında</a></li>
                                         <li>
-                                            <a href="#">blog<i class="fa fa-angle-down"></i></a>
-                                            <div class="sub-menu">
-                                                <ul>
-                                                    <li><a href="blog.html">blog</a></li>
-                                                    <li><a href="blog-details.html">blog-details</a></li>
-                                                </ul>
-                                            </div>
+                                            <a href="#">İletişim</a>
+                                           
                                         </li>
                                     </ul>
                                 </nav>
@@ -179,10 +185,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
             <!-- header-mid-area-end -->
             <!-- mobile-menu-area-start -->
-            <div class="mobile-menu-area hidden-md hidden-lg">
+            @*<div class="mobile-menu-area hidden-md hidden-lg">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
@@ -216,13 +222,10 @@
                                                 <li><a href="404.html">404 Page</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html">contact</a></li>
+                                        <li><a href="#">Kitabın Bende Hakkında</a></li>
                                         <li>
-                                            <a href="#">blog</a>
-                                            <ul>
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="blog-details.html">blog-details</a></li>
-                                            </ul>
+                                            <a href="#">İletişim</a>
+                                            
                                         </li>
                                     </ul>
                                 </nav>
@@ -230,7 +233,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
             <!-- mobile-menu-area-end -->
             <!-- header-bottom-area-start -->
             <div class="header-bottom-area">
@@ -238,286 +241,30 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-4">
                             <div class="category-area category-mb">
-                                <h3><a href="#" id="showcat">Category Menu <i class="fa fa-bars"></i></a></h3>
+                                <h3><a href="#" id="showcat">Kategoriler <i class="fa fa-bars"></i></a></h3>
                                 <div class="category-menu category-menu-1" id="hidecat">
                                     <nav class="menu">
                                         <ul>
-                                            <li class="cr-dropdown">
-                                                <a href="#">Book<i class="none-lg fa fa-angle-down"></i><i class="none-sm fa fa-angle-right"></i></a>
-                                                <div class="left-menu">
-                                                    <span class="mb-30">
-                                                        <a href="#" class="title">Jackets</a>
-                                                        <a href="#">Tops & Tees</a>
-                                                        <a href="#">Polo Short Sleeve</a>
-                                                        <a href="#">Graphic T-Shirts</a>
-                                                        <a href="#">Jackets & Coats</a>
-                                                        <a href="#">Fashion Jackets</a>
-                                                    </span>
-                                                    <span class="mb-30">
-                                                        <a href="#" class="title">Bottoms</a>
-                                                        <a href="#">Heeled sandals</a>
-                                                        <a href="#">Polo Short Sleeve</a>
-                                                        <a href="#">Flat sandals</a>
-                                                        <a href="#">Short Sleeve</a>
-                                                        <a href="#">Long Sleeve</a>
-                                                    </span>
-                                                    <span>
-                                                        <a href="#" class="title">weaters</a>
-                                                        <a href="#">Crochet</a>
-                                                        <a href="#">Sleeveless</a>
-                                                        <a href="#">Stripes</a>
-                                                        <a href="#">Sweaters</a>
-                                                        <a href="#">hoodies</a>
-                                                    </span>
-                                                    <span>
-                                                        <a href="#" class="title">Jeans Pants</a>
-                                                        <a href="#">Polo Short Sleeve </a>
-                                                        <a href="#">Sleeveless</a>
-                                                        <a href="#">Graphic T-Shirts</a>
-                                                        <a href="#">Hoodies</a>
-                                                        <a href="#">Jackets</a>
-                                                    </span>
-                                                </div>
-                                                <ul>
-                                                    <li class="cr-sub-dropdown sub-style">
-                                                        <a href="#">Jackets <i class="fa fa-angle-down"></i></a>
-                                                        <ul>
-                                                            <li><a href="shop-grid-2-col.html">Tops & Tees</a></li>
-                                                            <li><a href="shop-grid-3-col.html">Polo Short Sleeve</a></li>
-                                                            <li><a href="shop.html">Graphic T-Shirts</a></li>
-                                                            <li><a href="shop-grid-6-col.html">Jackets & Coats</a></li>
-                                                            <li><a href="shop-grid-box.html">Fashion Jackets</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="cr-sub-dropdown sub-style">
-                                                        <a href="#">Bottoms <i class="fa fa-angle-down"></i></a>
-                                                        <ul>
-                                                            <li><a href="shop-list.html">Heeled sandals</a></li>
-                                                            <li><a href="shop-list.html">Polo Short Sleeve</a></li>
-                                                            <li><a href="shop-list-2-col.html">Flat sandals</a></li>
-                                                            <li><a href="shop-list-3-col.html">Short Sleeve</a></li>
-                                                            <li><a href="shop-list-box.html">Long Sleeve</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="cr-sub-dropdown sub-style">
-                                                        <a href="#">weaters <i class="fa fa-angle-down"></i></a>
-                                                        <ul>
-                                                            <li><a href="product-details.html">Sleeveless</a></li>
-                                                            <li><a href="product-details-sticky.html">Stripes</a></li>
-                                                            <li><a href="product-details-gallery.html">Sweaters</a></li>
-                                                            <li><a href="product-details-fixed-img.html">hoodies</a></li>
-                                                            <li><a href="product-details-fixed-img.html">Crochet</a></li>
-                                                            <li><a href="product-details-fixed-img.html">weaters</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="cr-sub-dropdown sub-style">
-                                                        <a href="#">Jeans Pants <i class="fa fa-angle-down"></i></a>
-                                                        <ul>
-                                                            <li><a href="shop.html">Sleeveless</a></li>
-                                                            <li><a href="shop.html">Graphic T-Shirts</a></li>
-                                                            <li><a href="shop.html">Hoodies</a></li>
-                                                            <li><a href="shop.html">Jackets</a></li>
-                                                            <li><a href="shop.html">Polo Short Sleeve</a></li>
-                                                            <li><a href="shop.html">Jeans Pants</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="cr-dropdown">
-                                                <a href="#">Audio books<i class="none-lg fa fa-angle-down"></i><i class="none-sm fa fa-angle-right"></i></a>
-                                                <div class="left-menu">
-                                                    <span class="mb-30">
-                                                        <a href="#" class="title">Shirts</a>
-                                                        <a href="#">Tops & Tees</a>
-                                                        <a href="#">Sweaters</a>
-                                                        <a href="#">Hoodies</a>
-                                                        <a href="#">Jackets & Coats</a>
-                                                    </span>
-                                                    <span class="mb-30">
-                                                        <a href="#" class="title">Jackets</a>
-                                                        <a href="#">Sweaters</a>
-                                                        <a href="#">Hoodies</a>
-                                                        <a href="#">Wedges</a>
-                                                        <a href="#">Vests</a>
-                                                    </span>
-                                                    <span>
-                                                        <a href="#" class="title">Tops & Tees</a>
-                                                        <a href="#">Long Sleeve </a>
-                                                        <a href="#">Short Sleeve</a>
-                                                        <a href="#">Polo Short Sleeve</a>
-                                                        <a href="#">Sleeveless</a>
-                                                    </span>
-                                                    <span>
-                                                        <a href="#" class="title">Jeans pants</a>
-                                                        <a href="#">Polo Short Sleeve</a>
-                                                        <a href="#">Sleeveless</a>
-                                                        <a href="#">Graphic T-Shirts</a>
-                                                        <a href="#">Hoodies</a>
-                                                    </span>
-                                                </div>
-                                                <ul>
-                                                    <li class="cr-sub-dropdown sub-style">
-                                                        <a href="#">Jackets <i class="fa fa-angle-down"></i></a>
-                                                        <ul>
-                                                            <li><a href="shop-grid-2-col.html">Tops & Tees</a></li>
-                                                            <li><a href="shop-grid-3-col.html">Polo Short Sleeve</a></li>
-                                                            <li><a href="shop.html">Graphic T-Shirts</a></li>
-                                                            <li><a href="shop-grid-6-col.html">Jackets & Coats</a></li>
-                                                            <li><a href="shop-grid-box.html">Fashion Jackets</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="cr-sub-dropdown sub-style">
-                                                        <a href="#">Bottoms <i class="fa fa-angle-down"></i></a>
-                                                        <ul>
-                                                            <li><a href="shop-list.html">Heeled sandals</a></li>
-                                                            <li><a href="shop-list.html">Polo Short Sleeve</a></li>
-                                                            <li><a href="shop-list-2-col.html">Flat sandals</a></li>
-                                                            <li><a href="shop-list-3-col.html">Short Sleeve</a></li>
-                                                            <li><a href="shop-list-box.html">Long Sleeve</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="cr-sub-dropdown sub-style">
-                                                        <a href="#">weaters <i class="fa fa-angle-down"></i></a>
-                                                        <ul>
-                                                            <li><a href="product-details.html">Sleeveless</a></li>
-                                                            <li><a href="product-details-sticky.html">Stripes</a></li>
-                                                            <li><a href="product-details-gallery.html">Sweaters</a></li>
-                                                            <li><a href="product-details-fixed-img.html">hoodies</a></li>
-                                                            <li><a href="product-details-fixed-img.html">Crochet</a></li>
-                                                            <li><a href="product-details-fixed-img.html">weaters</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="cr-sub-dropdown sub-style">
-                                                        <a href="#">Jeans Pants <i class="fa fa-angle-down"></i></a>
-                                                        <ul>
-                                                            <li><a href="shop.html">Sleeveless</a></li>
-                                                            <li><a href="shop.html">Graphic T-Shirts</a></li>
-                                                            <li><a href="shop.html">Hoodies</a></li>
-                                                            <li><a href="shop.html">Jackets</a></li>
-                                                            <li><a href="shop.html">Polo Short Sleeve</a></li>
-                                                            <li><a href="shop.html">Jeans Pants</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="cr-dropdown">
-                                                <a href="#">children’s books<i class="none-lg fa fa-angle-down"></i><i class="none-sm fa fa-angle-right"></i></a>
-                                                <div class="left-menu">
-                                                    <span class="mb-30">
-                                                        <a href="#" class="title">Tops</a>
-                                                        <a href="#">Shirts</a>
-                                                        <a href="#">Florals</a>
-                                                        <a href="#">Crochet</a>
-                                                        <a href="#">Stripes</a>
-                                                    </span>
-                                                    <span class="mb-30">
-                                                        <a href="#" class="title">Bottoms</a>
-                                                        <a href="#">Shoes</a>
-                                                        <a href="#">Heeled sandals</a>
-                                                        <a href="#">Flat sandals</a>
-                                                        <a href="#">Wedges</a>
-                                                    </span>
-                                                    <span>
-                                                        <a href="#" class="title">Shorts</a>
-                                                        <a href="#">Dresses</a>
-                                                        <a href="#">Trousers</a>
-                                                        <a href="#">Jeans</a>
-                                                    </span>
-                                                </div>
-                                                <ul>
-                                                    <li class="cr-sub-dropdown sub-style">
-                                                        <a href="#">Jackets <i class="fa fa-angle-down"></i></a>
-                                                        <ul>
-                                                            <li><a href="shop-grid-2-col.html">Tops & Tees</a></li>
-                                                            <li><a href="shop-grid-3-col.html">Polo Short Sleeve</a></li>
-                                                            <li><a href="shop.html">Graphic T-Shirts</a></li>
-                                                            <li><a href="shop-grid-6-col.html">Jackets & Coats</a></li>
-                                                            <li><a href="shop-grid-box.html">Fashion Jackets</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="cr-sub-dropdown sub-style">
-                                                        <a href="#">Bottoms <i class="fa fa-angle-down"></i></a>
-                                                        <ul>
-                                                            <li><a href="shop-list.html">Heeled sandals</a></li>
-                                                            <li><a href="shop-list.html">Polo Short Sleeve</a></li>
-                                                            <li><a href="shop-list-2-col.html">Flat sandals</a></li>
-                                                            <li><a href="shop-list-3-col.html">Short Sleeve</a></li>
-                                                            <li><a href="shop-list-box.html">Long Sleeve</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="cr-sub-dropdown sub-style">
-                                                        <a href="#">weaters <i class="fa fa-angle-down"></i></a>
-                                                        <ul>
-                                                            <li><a href="product-details.html">Sleeveless</a></li>
-                                                            <li><a href="product-details-sticky.html">Stripes</a></li>
-                                                            <li><a href="product-details-gallery.html">Sweaters</a></li>
-                                                            <li><a href="product-details-fixed-img.html">hoodies</a></li>
-                                                            <li><a href="product-details-fixed-img.html">Crochet</a></li>
-                                                            <li><a href="product-details-fixed-img.html">weaters</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="cr-dropdown">
-                                                <a href="#">bussiness & money<i class="none-lg fa fa-angle-down"></i><i class="none-sm fa fa-angle-right"></i></a>
-                                                <div class="left-menu">
-                                                    <span>
-                                                        <a href="#" class="title">Rings</a>
-                                                        <a href="#">Coats & Jackets</a>
-                                                        <a href="#">Blazers</a>
-                                                        <a href="#">Jackets</a>
-                                                        <a href="#">Raincoats</a>
-                                                        <a href="#">Trousers</a>
-                                                    </span>
-                                                    <span>
-                                                        <a href="#" class="title">Trousers</a>
-                                                        <a href="#">Joggers</a>
-                                                        <a href="#">Casual</a>
-                                                        <a href="#">Chinos</a>
-                                                        <a href="#">Tailored</a>
-                                                        <a href="#">Jeans</a>
-                                                    </span>
-                                                </div>
-                                                <ul>
-                                                    <li class="cr-sub-dropdown sub-style">
-                                                        <a href="#">Jackets <i class="fa fa-angle-down"></i></a>
-                                                        <ul>
-                                                            <li><a href="shop-grid-2-col.html">Tops & Tees</a></li>
-                                                            <li><a href="shop-grid-3-col.html">Polo Short Sleeve</a></li>
-                                                            <li><a href="shop.html">Graphic T-Shirts</a></li>
-                                                            <li><a href="shop-grid-6-col.html">Jackets & Coats</a></li>
-                                                            <li><a href="shop-grid-box.html">Fashion Jackets</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="cr-sub-dropdown sub-style">
-                                                        <a href="#">Bottoms <i class="fa fa-angle-down"></i></a>
-                                                        <ul>
-                                                            <li><a href="shop-list.html">Heeled sandals</a></li>
-                                                            <li><a href="shop-list.html">Polo Short Sleeve</a></li>
-                                                            <li><a href="shop-list-2-col.html">Flat sandals</a></li>
-                                                            <li><a href="shop-list-3-col.html">Short Sleeve</a></li>
-                                                            <li><a href="shop-list-box.html">Long Sleeve</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">usedbooks</a></li>
-                                            <li><a href="#">sales off</a></li>
-                                            <li><a href="#">Biographies</a></li>
-                                            <li><a href="#">Cookbooks</a></li>
-                                            <li><a href="#">Education</a></li>
-                                            <li><a href="#">Engineering</a></li>
-                                            <li class="rx-child"><a href="shop.html">Health, Fitness</a></li>
-                                            <li class="rx-parent">
-                                                <a class="rx-default">
-                                                    <span class="cat-thumb fa fa-plus"></span>
-                                                    More categories
+                                            @foreach (var itemParentCategoies in Model.CategoryListForFilter)
+                                            {
+                                                <li>
+                                            <a href="/book/listing/@itemParentCategoies.Key.CategoryId">
+                                                    @itemParentCategoies.Key.CategoryName
+                                                <span class="pull-right">@itemParentCategoies.Value</span>
                                                 </a>
-                                                <a class="rx-show">
-                                                    <span class="cat-thumb fa fa-minus"></span>
-                                                    close menu
-                                                </a>
-                                            </li>
+                                                </li>
+                                            }
+                                            @*<li class="rx-child"><a href="shop.html">Health, Fitness</a></li>
+        <li class="rx-parent">
+            <a class="rx-default">
+                <span class="cat-thumb fa fa-plus"></span>
+                More categories
+            </a>
+            <a class="rx-show">
+                <span class="cat-thumb fa fa-minus"></span>
+                close menu
+            </a>
+        </li>*@
                                         </ul>
                                     </nav>
                                 </div>
@@ -571,7 +318,28 @@
         <!-- slider-area-start -->
         <div class="slider-area">
             <div class="slider-active owl-carousel">
-                <div class="single-slider pt-105 pb-225 bg-img" style="background-image:url(img/slider/5.jpg);">
+                @*<div class="single-slider pt-105 pb-225 bg-img" style="background-image:url(img/slider/5.jpg);">*@
+                <div class="single-slider pt-105 pb-225 bg-img" style="background-image:url(http://www.sclance.com/backgrounds/background-book/background-book_164604.jpg);">
+                    
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="slider-content-3 slider-animated-1 pl-295">
+                                    <h1 style="color:#f07c29">Kitabın<br>Bende</h1>
+                                    <p class="slider-sale">
+                                        @*<span class="sale1">-20%</span>*@
+                                        @*<span class="sale2">
+                                            <strong>£80.00</strong>
+                                            £60.00
+                                        </span>*@
+                                    </p>
+                                    <a href="#" style="color:#666;">Nasıl kitap takas ederim ???</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="single-slider pt-105 pb-225 bg-img" style="background-image:url(img/slider/6.jpg);">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
@@ -589,26 +357,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="single-slider pt-105 pb-225 bg-img" style="background-image:url(img/slider/6.jpg);">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="slider-content-3 slider-animated-1 pl-295">
-                                    <h1>Do it <br>Yourself</h1>
-                                    <p class="slider-sale">
-                                        <span class="sale1">-20%</span>
-                                        <span class="sale2">
-                                            <strong>£80.00</strong>
-                                            £60.00
-                                        </span>
-                                    </p>
-                                    <a href="#">Shop now!</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </div>*@
             </div>
         </div>
         <!-- slider-area-end -->

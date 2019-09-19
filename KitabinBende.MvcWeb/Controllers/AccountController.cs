@@ -21,11 +21,13 @@ namespace KitabinBende.MvcWeb.Controllers
             _roleManager = roleManager;
             _signInManager = signInManager;
         }
+        [Route("account/register")]
         public ActionResult Register()
         {
             return View();
         }
 
+        [Route("account/register")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(AccountRegisterViewModel accountRegisterViewModel)
@@ -85,11 +87,14 @@ namespace KitabinBende.MvcWeb.Controllers
            
             return View(accountRegisterViewModel);
         }
+
+        [Route("account/login")]
         public ActionResult Login()
         {
             return View();
         }
 
+        [Route("account/login")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(AccountLoginViewModel accountLoginViewModel)

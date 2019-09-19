@@ -10,11 +10,13 @@ namespace KitabinBende.DataAccess.Concrete.EntityFramework
     {
         public KitabinBendeDbContext()
         {
+            
         }
 
         public KitabinBendeDbContext(DbContextOptions<KitabinBendeDbContext> options)
             : base(options)
         {
+
         }
 
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
@@ -53,7 +55,8 @@ namespace KitabinBende.DataAccess.Concrete.EntityFramework
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=192.168.0.11;Database=KitabinBendeDb;user id=sa;password=123qaz;Trusted_Connection=True;");
+                //optionsBuilder.UseSqlServer("Server=192.168.0.11;Database=KitabinBendeDb;user id=sa;password=123qaz;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=kitabinbende-db-server.database.windows.net;Database=KitabinBendeDb;user id=KitabinBendeDbAdmin;password=159k.b357;Trusted_Connection=True;Integrated Security=False;");
             }
         }
 

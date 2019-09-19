@@ -21,6 +21,7 @@ namespace KitabinBende.MvcWeb.Controllers
         {
             pageSize = 20
         }
+
         public BookController(ILibraryService libraryService, ICategoryService categoryService, IAuthorService authorService, IPublisherService publisherService, ILanguageService languageService)
         {
             _LibraryService = libraryService;
@@ -29,6 +30,8 @@ namespace KitabinBende.MvcWeb.Controllers
             _PublisherService = publisherService;
             _LanguageService = languageService;
         }
+
+
         [Route("Book/Listing/{categoryId}")]
         public IActionResult Listing(int categoryId, int page = 1,
             int pageSize = (int)_DefaultValues.pageSize, int authorId = 0, int publisherId=0,int languageId=0,int pageSortId = 0)

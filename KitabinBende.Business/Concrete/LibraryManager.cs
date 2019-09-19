@@ -49,14 +49,14 @@ namespace KitabinBende.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public virtual List<Library> GetListing(List<Category> categories, int authorId = 0, int publisherId = 0, int languageId = 0, int pageSortId = 0)
+        public virtual List<Library> GetListing(List<Category> categories=null, int authorId = 0, int publisherId = 0, int languageId = 0, int pageSortId = 0)
         {
 
             SortOption<IGrouping<Book, Library>, object> _sortOption =
              GetSortOptions().Where(x => x.SortID == pageSortId).FirstOrDefault();
 
-            var retunData = _LibraryDal.GetListWithRelations(x =>
-             (x.Book.BookCategory.Any(bc => categories.Select(ci => ci.CategoryId).Contains(bc.CategoryId))
+            var retunData = _LibraryDal.GetListWithRelations(x => x.IsShareable==true &&
+            (categories==null ||(x.Book.BookCategory.Any(bc => categories.Select(ci => ci.CategoryId).Contains(bc.CategoryId)))
              && (authorId == 0 || x.Book.BookAuthor.Any(ba => ba.AuthorId == authorId))
              && (publisherId == 0 || x.Book.PublisherId == publisherId)
              && (languageId == 0 || x.Book.LanguageId == languageId)

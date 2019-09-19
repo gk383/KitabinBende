@@ -16,9 +16,9 @@ namespace KitabinBende.Business.Concrete
         {
             _CategoryDal = categoryDal;
         }
-        public List<Category> GetAll()
+        public List<Category> GetByLevel(int categoryLevel)
         {
-            throw new NotImplementedException();
+            return _CategoryDal.GetList(x => x.CategoryLevel == categoryLevel);
         }
 
         public Category GetByID(int categoryID)
@@ -65,9 +65,15 @@ namespace KitabinBende.Business.Concrete
 
         }
 
-        public virtual Dictionary<Category, int> GetCategoriesForList(List<Library> libraryList, int currentCategoryId)
+        public virtual Dictionary<Category, int> GetCategoriesForList(List<Library> libraryList, int currentCategoryId=0)
         {
-            Category _CurrentCategory = GetByID(currentCategoryId);
+            int _CategoryLevel = 1;
+            if (currentCategoryId!=0)
+            {
+                Category _CurrentCategory = GetByID(currentCategoryId);
+                _CategoryLevel = _CurrentCategory.CategoryLevel + 1;
+            }
+           
             List<Category> _Categories = new List<Category>();
             Dictionary<Category, int> returnData = new Dictionary<Category, int>();
             List<int> _CategoryIds = new List<int>();
@@ -77,7 +83,7 @@ namespace KitabinBende.Business.Concrete
                 {
 
                     GetAllParentCategoryResult _SubLvlCategory = _CategoryDal.GetAllParentCategory(itemBookCategoryLoop.Category.CategoryId)
-                        .Where(x => x.CategoryLevel == _CurrentCategory.CategoryLevel + 1)
+                        .Where(x => x.CategoryLevel == _CategoryLevel)
                         .FirstOrDefault();
 
                     if (_SubLvlCategory == null)

@@ -12,7 +12,7 @@ namespace KitabinBende.Business.Abstract
         List<Library> GetByUserID(int userID);
         List<Library> GetByBookID(int bookID);
         Library GetByID(int libraryID);
-        List<Library> GetListing(List<Category> categories, int authorId,int publisherId,int languageId, int pageSort);
+        List<Library> GetListing(List<Category> categories=null, int authorId=0,int publisherId=0,int languageId=0, int pageSort=0);
         List<SortOption<IGrouping<Book, Library>, object>> GetSortOptions();
 
         void Add(Library library);
