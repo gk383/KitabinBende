@@ -48,6 +48,7 @@ namespace KitabinBende.DataAccess.Concrete.EntityFramework
         public virtual DbSet<UserAddress> UserAddress { get; set; }
         public virtual DbQuery<GetAllSubCategoryIdsResult> GetAllSubCategoryIds { get; set; }
         public virtual DbQuery<GetAllParentCategoryResult> GetAllParentCategory { get; set; }
+        public virtual DbQuery<GetAvailableParentCategoriesResult> GetAvailableParentCategories { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -112,5 +112,10 @@ namespace KitabinBende.Business.Concrete
 
             return returnData;
         }
+
+        public List<GetAvailableParentCategoriesResult> GetMainCategoryMenu()
+        {
+            return _CategoryDal.GetAvailableParentCategories();
+        }
     }
 }

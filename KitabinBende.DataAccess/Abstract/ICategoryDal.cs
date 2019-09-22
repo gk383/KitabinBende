@@ -13,6 +13,8 @@ namespace KitabinBende.DataAccess.Abstract
         List<GetAllSubCategoryIdsResult> GetAllSubCategoryIds(int categoryID);
 
         List<GetAllParentCategoryResult> GetAllParentCategory(int categoryID);
+
+        List<GetAvailableParentCategoriesResult> GetAvailableParentCategories();
     }
     
 }

@@ -24,10 +24,12 @@ namespace KitabinBende.MvcWeb.Controllers
         [Route("")]
         public IActionResult Index()
         {
-            List<Library> _LibraryList = _LibraryService.GetListing();
+            //List<Library> _LibraryList = _LibraryService.GetListing();
             HomeIndexViewModel returnData = new HomeIndexViewModel()
             {
-                CategoryListForFilter = _CategoryService.GetCategoriesForList(_LibraryList)
+                MainCategoryMenu =_CategoryService.GetMainCategoryMenu(),
+                NewBooks = _LibraryService.GetNewBooks(),
+                MostPopularBooks=_LibraryService.GetMostPopularBooks()
             };
             return View(returnData);
         }

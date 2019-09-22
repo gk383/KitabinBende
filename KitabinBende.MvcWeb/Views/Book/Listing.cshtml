@@ -191,12 +191,13 @@
 
                                     @foreach (var ListLoopItem in Model.Library)
                                     {
-                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
                                             <!-- single-product-start -->
                                             <div class="product-wrapper mb-40">
                                                 <div class="product-img">
                                                     <a href="#">
-                                                        <img src="/BookPhotos/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().BookId/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().Url" alt="@ListLoopItem.Book.BookName" class="primary" style="width:256px; height:350px; border:1px solid lightgray" />
+                                                        @*width:256px; height:350px;*@
+                                                        <img src="/BookPhotos/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().BookId/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().Url" alt="@ListLoopItem.Book.BookName" class="primary" height="300" style="border:1px solid lightgray" />
                                                     </a>
                                                     <div class="quick-view">
                                                         <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">

@@ -51,16 +51,15 @@ namespace KitabinBende.Business.Concrete
 
         public virtual List<Library> GetListing(List<Category> categories=null, int authorId = 0, int publisherId = 0, int languageId = 0, int pageSortId = 0)
         {
-
             SortOption<IGrouping<Book, Library>, object> _sortOption =
              GetSortOptions().Where(x => x.SortID == pageSortId).FirstOrDefault();
 
-            var retunData = _LibraryDal.GetListWithRelations(x => x.IsShareable==true &&
-            (categories==null ||(x.Book.BookCategory.Any(bc => categories.Select(ci => ci.CategoryId).Contains(bc.CategoryId)))
+            var retunData = _LibraryDal.GetListWithRelations(x => x.IsShareable==true 
+             && (categories==null ||(x.Book.BookCategory.Any(bc => categories.Select(ci => ci.CategoryId).Contains(bc.CategoryId))))
              && (authorId == 0 || x.Book.BookAuthor.Any(ba => ba.AuthorId == authorId))
              && (publisherId == 0 || x.Book.PublisherId == publisherId)
              && (languageId == 0 || x.Book.LanguageId == languageId)
-             )).GroupBy(g => g.Book);
+             ).GroupBy(g => g.Book);
 
             if (_sortOption.isDescending)
             {
@@ -70,6 +69,17 @@ namespace KitabinBende.Business.Concrete
             {
                 return retunData.OrderBy(_sortOption.SortFunc).Select(x => x.FirstOrDefault()).ToList();
             }
+        }
+
+        public virtual List<Book> GetNewBooks() {
+            return _LibraryDal.GetSuggestedtWithRelations(x => x.FirstPublishYear, 15);
+        }
+
+        public virtual List<Book> GetMostPopularBooks()
+        {
+            return _LibraryDal.GetSuggestedtWithRelations(x => x.BookStarPoint.Average(bs=>bs.Point),
+                15,
+                x=>x.BookStarPoint.Count>0);
         }
 
         public virtual List<SortOption<IGrouping<Book, Library>, object>> GetSortOptions()

@@ -15,5 +15,6 @@ namespace KitabinBende.Business.Abstract
         List<Category> GetCategoryAndAllSubCategoryIds(int categoryID);
         List<Category> GetCategoryAndAllParentCategories(int categoryID);       
         Dictionary<Category, int> GetCategoriesForList(List<Library> libraryList, int currentCategoryId=0);
+        List<GetAvailableParentCategoriesResult> GetMainCategoryMenu();
     }
 }

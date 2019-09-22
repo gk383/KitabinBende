@@ -11,6 +11,7 @@ namespace KitabinBende.DataAccess.Abstract
     {
         //Custom Operations
         List<Library> GetListWithRelations(Expression<Func<Library, bool>> filter = null);
+        List<Book> GetSuggestedtWithRelations(Expression<Func<Book, object>> sort, int take, Expression<Func<Book, bool>> filter = null);
     }
    
 }

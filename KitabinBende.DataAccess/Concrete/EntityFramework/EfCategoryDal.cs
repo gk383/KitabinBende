@@ -31,5 +31,14 @@ namespace KitabinBende.DataAccess.Concrete.EntityFramework
             }
            
         }
+
+        public List<GetAvailableParentCategoriesResult> GetAvailableParentCategories()
+        {
+            using (KitabinBendeDbContext db = new KitabinBendeDbContext())
+            {
+                return db.GetAvailableParentCategories.FromSql("EXECUTE dbo.GetAvailableParentCategories").ToList();
+
+            }
+        }
     }
 }
