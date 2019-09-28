@@ -28,8 +28,8 @@ namespace KitabinBende.MvcWeb.Controllers
             HomeIndexViewModel returnData = new HomeIndexViewModel()
             {
                 MainCategoryMenu =_CategoryService.GetMainCategoryMenu(),
-                NewBooks = _LibraryService.GetNewBooks(),
-                MostPopularBooks=_LibraryService.GetMostPopularBooks()
+                NewBooks = _LibraryService.GetNewBooks(15),
+                MostPopularBooks=_LibraryService.GetMostPopularBooks(15)
             };
             return View(returnData);
         }

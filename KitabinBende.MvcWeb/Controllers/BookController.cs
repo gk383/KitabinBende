@@ -17,18 +17,20 @@ namespace KitabinBende.MvcWeb.Controllers
         private IAuthorService _AuthorService;
         private IPublisherService _PublisherService;
         private ILanguageService _LanguageService;
+        private IBookService _BookService;
         private enum _DefaultValues
         {
             pageSize = 20
         }
 
-        public BookController(ILibraryService libraryService, ICategoryService categoryService, IAuthorService authorService, IPublisherService publisherService, ILanguageService languageService)
+        public BookController(ILibraryService libraryService, ICategoryService categoryService, IAuthorService authorService, IPublisherService publisherService, ILanguageService languageService, IBookService bookService)
         {
             _LibraryService = libraryService;
             _CategoryService = categoryService;
             _AuthorService = authorService;
             _PublisherService = publisherService;
             _LanguageService = languageService;
+            _BookService = bookService;
         }
 
 
@@ -63,11 +65,18 @@ namespace KitabinBende.MvcWeb.Controllers
             return View(returnData);
         }
 
+        [Route("Book/Detail/{bookId}")]
+        public IActionResult Detail(int bookId) {
 
-        public IActionResult Detail()
-        {
-            return View();
+            BookDetailViewModel retrunData = new BookDetailViewModel()
+            {
+                Book = _BookService.GetBookDetailByID(bookId),
+                NewBooks = _LibraryService.GetNewBooks(5)
+            };
+            return View(retrunData);
         }
+
+
         public IActionResult Add()
         {
 

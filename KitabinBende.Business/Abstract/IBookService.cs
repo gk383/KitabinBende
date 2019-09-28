@@ -16,6 +16,8 @@ namespace KitabinBende.Business.Abstract
 
         Book GetByID(int BookID);
 
+        Book GetBookDetailByID(int BookID);
+
         void Add(Book Book);
         void Update(Book Book);
         void Delete(Book Book);

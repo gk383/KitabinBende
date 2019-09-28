@@ -7,7 +7,7 @@ using System.Text;
 
 namespace KitabinBende.Business.Concrete
 {
-    class BookManager : IBookService
+   public class BookManager : IBookService
     {
         private IBookDal _IBookDal;
 
@@ -66,6 +66,9 @@ namespace KitabinBende.Business.Concrete
             throw new NotImplementedException();
         }
 
-       
+        public Book GetBookDetailByID(int BookID)
+        {
+            return _IBookDal.GetWithRelations(x => x.BookId == BookID);
+        }
     }
 }

@@ -71,14 +71,14 @@ namespace KitabinBende.Business.Concrete
             }
         }
 
-        public virtual List<Book> GetNewBooks() {
-            return _LibraryDal.GetSuggestedtWithRelations(x => x.FirstPublishYear, 15);
+        public virtual List<Book> GetNewBooks(int requestedItem) {
+            return _LibraryDal.GetSuggestedtWithRelations(x => x.FirstPublishYear, requestedItem);
         }
 
-        public virtual List<Book> GetMostPopularBooks()
+        public virtual List<Book> GetMostPopularBooks(int requestedItem)
         {
             return _LibraryDal.GetSuggestedtWithRelations(x => x.BookStarPoint.Average(bs=>bs.Point),
-                15,
+                requestedItem,
                 x=>x.BookStarPoint.Count>0);
         }
 

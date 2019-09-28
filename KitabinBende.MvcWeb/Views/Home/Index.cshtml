@@ -318,7 +318,7 @@
         <div class="slider-area">
             <div class="slider-active owl-carousel">
                 @*<div class="single-slider pt-105 pb-225 bg-img" style="background-image:url(img/slider/5.jpg);">*@
-                <div class="single-slider pt-105 pb-225 bg-img" style="background-image:url(http://www.sclance.com/backgrounds/background-book/background-book_164604.jpg);">
+                <div class="single-slider pt-105 pb-225 bg-img" style="background-image:url(https://www.bookrazor.com/wp-content/uploads/2016/11/how-to-get-book-reviews-for-free.jpg);">
 
                     <div class="container">
                         <div class="row">
@@ -482,11 +482,11 @@
                                     <!-- single-product-start -->
                                     <div class="product-wrapper mb-40">
                                         <div class="product-img">
-                                            <a href="#">
+                                            <a href="/book/detail/@itemNewBooks.BookId">
                                                 <img src="/BookPhotos/@itemNewBooks.BookImage.Where(x => x.IsActive == true).FirstOrDefault().BookId/@itemNewBooks.BookImage.Where(x => x.IsActive == true).FirstOrDefault().Url" alt="@itemNewBooks.BookName" class="primary" height="300" style="border:1px solid lightgray" />
                                             </a>
                                             <div class="quick-view">
-                                                <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
+                                                <a class="action-view" href="/book/detail/@itemNewBooks.BookId" data-target="#productModal" data-toggle="modal" title="Quick View">
                                                     <i class="fa fa-search-plus"></i>
                                                 </a>
                                             </div>
@@ -504,7 +504,7 @@
                                                     <ul>
                                                         @for (int i = 0; i < _BookStar; i++)
                                                         {
-                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="/book/detail/@itemNewBooks.BookId"><i class="fa fa-star"></i></a></li>
                                                         }
 
                                                     </ul>
@@ -517,7 +517,7 @@
 
                                             </div>
                                             <h4>
-                                                <a href="#">
+                                                <a href="/book/detail/@itemNewBooks.BookId">
                                                     @(itemNewBooks.BookName.Length > 20
                                                        ? itemNewBooks.BookName.Substring(0, 20) + ".."
                                                        : itemNewBooks.BookName)
@@ -543,11 +543,11 @@
                                         </div>
                                         <div class="product-link">
                                             <div class="product-button">
-                                                <a href="#" title="Detay"><i class="fa fa-book"></i>Detay</a>
+                                                <a href="/book/detail/@itemNewBooks.BookId" title="Detay"><i class="fa fa-book"></i>Detay</a>
                                             </div>
                                             <div class="add-to-link">
                                                 <ul>
-                                                    <li><a href="product-details.html" title="Detay"><i class="fa fa-external-link"></i></a></li>
+                                                    <li><a href="/book/detail/@itemNewBooks.BookId" title="Detay"><i class="fa fa-external-link"></i></a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -567,11 +567,11 @@
                                     <!-- single-product-start -->
                                     <div class="product-wrapper mb-40">
                                         <div class="product-img">
-                                            <a href="#">
+                                            <a href="/book/detail/@itemNewBooks.BookId">
                                                 <img src="/BookPhotos/@itemNewBooks.BookImage.Where(x => x.IsActive == true).FirstOrDefault().BookId/@itemNewBooks.BookImage.Where(x => x.IsActive == true).FirstOrDefault().Url" alt="@itemNewBooks.BookName" class="primary" height="300" style="border:1px solid lightgray" />
                                             </a>
                                             <div class="quick-view">
-                                                <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
+                                                <a class="action-view" href="/book/detail/@itemNewBooks.BookId" data-target="#productModal" data-toggle="modal" title="Quick View">
                                                     <i class="fa fa-search-plus"></i>
                                                 </a>
                                             </div>
@@ -589,7 +589,7 @@
                                                     <ul>
                                                         @for (int i = 0; i < _BookStar; i++)
                                                         {
-                                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                            <li><a href="/book/detail/@itemNewBooks.BookId"><i class="fa fa-star"></i></a></li>
                                                         }
 
                                                     </ul>
@@ -602,7 +602,7 @@
 
                                             </div>
                                             <h4>
-                                                <a href="#">
+                                                <a href="/book/detail/@itemNewBooks.BookId">
                                                     @(itemNewBooks.BookName.Length > 20
                                                        ? itemNewBooks.BookName.Substring(0, 20) + ".."
                                                        : itemNewBooks.BookName)
@@ -628,11 +628,11 @@
                                         </div>
                                         <div class="product-link">
                                             <div class="product-button">
-                                                <a href="#" title="Detay"><i class="fa fa-book"></i>Detay</a>
+                                                <a href="/book/detail/@itemNewBooks.BookId" title="Detay"><i class="fa fa-book"></i>Detay</a>
                                             </div>
                                             <div class="add-to-link">
                                                 <ul>
-                                                    <li><a href="product-details.html" title="Detay"><i class="fa fa-external-link"></i></a></li>
+                                                    <li><a href="/book/detail/@itemNewBooks.BookId" title="Detay"><i class="fa fa-external-link"></i></a></li>
                                                 </ul>
                                             </div>
                                         </div>

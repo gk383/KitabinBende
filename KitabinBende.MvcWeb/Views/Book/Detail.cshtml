@@ -1,0 +1,346 @@
+﻿@model KitabinBende.MvcWeb.Models.ViewModels.BookDetailViewModel
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- breadcrumbs-area-start -->
+<div class="breadcrumbs-area mb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumbs-menu">
+                    <ul>
+                        <li><a href="/">Anasayfa</a></li>
+                        <li><a href="/book/detail/@Model.Book.BookId" class="active">@Model.Book.BookName</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumbs-area-end -->
+<!-- product-main-area-start -->
+<div class="product-main-area mb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+                <!-- product-main-area-start -->
+                <div class="product-main-area">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                            <div class="flexslider">
+                                <ul class="slides">
+                                    <li data-thumb="img/thum-2/1.jpg">
+                                        @*<img src="img/flex/1.jpg" alt="woman" />*@
+                                        @foreach (var itemBookImage in Model.Book.BookImage.Where(x => x.IsActive))
+                                        {
+                                            <img src="/BookPhotos/@itemBookImage.BookId/@itemBookImage.Url"
+                                                 alt="@Model.Book.BookName" style="border:1px solid lightgray" />
+                                        }
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+                            <div class="product-info-main">
+                                <div class="page-title">
+                                    <h1>@Model.Book.BookName</h1>
+                                </div>
+                                <div @*class="product-info-stock-sku"*@>
+                                    <span><b>@Model.Book.Library.Count(x => x.IsShareable)</b> kullanıcı takas edebilir.</span>
+                                    @*<div class="product-attribute" style="display:inline-block;">
+                                            <span>ISBN</span>
+                                            <span class="value">@Model.Book.Isbn</span>
+                                        </div>*@
+                                </div>
+                                <div class="product-reviews-summary">
+                                    <div class="rating-summary">
+                                        @{int _BookStar = Model.Book.BookStarPoint.Where(x => x.IsActive == true).Count() > 0 ? Convert.ToInt32(Math.Round(Model.Book.BookStarPoint.Where(x => x.IsActive == true).Average(x => x.Point), MidpointRounding.AwayFromZero)) : 0;
+
+
+                                            @for (int i = 0; i < _BookStar; i++)
+                                            {
+                                                <a><i class="fa fa-star"></i></a>
+                                            }
+
+                                            if (_BookStar == 0)
+                                            {
+                                                <span>Puan Yok</span>
+                                            }
+                                        }
+
+                                    </div>
+                                    <div class="reviews-actions">
+                                        <a href="#">@Model.Book.BookStarPoint.Where(x => x.IsActive == true).Count() Oy</a>
+                                        @*<a href="#" class="view">Add Your Review</a>*@
+                                    </div>
+                                </div>
+                                @*<div class="product-info-price">
+                                        <div class="price-final">
+                                            <span>Yazar : asdas d asd as</span>
+                                        </div>
+                                    </div>*@
+                                <div style="margin-top:20px;">
+                                    <ul>
+                                        <li>
+                                            <b>Yazar :</b>
+                                            @foreach (var AuthorNameLoopItem in Model.Book.BookAuthor)
+                                            {
+
+                                                @(
+                                                    AuthorNameLoopItem.Author.AuthorName
+                                                )
+
+                                            }
+                                        </li>
+                                        <li>
+                                            <b>Kategori :</b>
+                                            @foreach (var CategoryNameLoopItem in Model.Book.BookCategory)
+                                            {
+
+                                                @(
+                                                    CategoryNameLoopItem.Category.CategoryName
+                                                )
+
+                                            }
+                                        </li>
+                                        <li><b>ISBN :</b> @Model.Book.Isbn</li>
+
+                                        @if (Model.Book.BookTranslator.Count > 0)
+                                        {
+                                            <li>
+                                                <b>Çevirmen :</b>
+                                                @foreach (var AuthorNameLoopItem in Model.Book.BookTranslator)
+                                                {
+
+                                                    @(
+                                                        AuthorNameLoopItem.Author.AuthorName
+                                                    )
+
+                                                }
+                                            </li>
+                                        }
+                                        <li><b>Yayın Evi :</b> @Model.Book.Publisher.PublisherName</li>
+                                        <li><b>İlk Baskı Yılı :</b> @Model.Book.FirstPublishYear</li>
+                                        <li><b>Sayfa Sayısı :</b> @Model.Book.PageCount</li>
+                                    </ul>
+                                </div>
+                                <div class="product-add-form">
+                                    <form action="#">
+                                        @*<div class="quality-button">
+                                                <input class="qty" type="number" value="1">
+                                            </div>*@
+                                        <a href="#">Kitabı İste</a>
+                                    </form>
+                                </div>
+                                @*<div class="product-social-links">
+                                        <div class="product-addto-links">
+                                            <a href="#"><i class="fa fa-heart"></i></a>
+                                            <a href="#"><i class="fa fa-pie-chart"></i></a>
+                                            <a href="#"><i class="fa fa-envelope-o"></i></a>
+                                        </div>
+                                        <div class="product-addto-links-text">
+                                            <p>Powerwalking to the gym or strolling to the local coffeehouse, the Savvy Shoulder Tote lets you stash your essentials in sporty style! A top-loading compartment provides quick and easy access to larger items, while zippered pockets on the front and side hold cash, credit cards and phone.</p>
+                                        </div>
+                                    </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- product-main-area-end -->
+                <!-- product-info-area-start -->
+                <div class="product-info-area mt-80">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active"><a href="#Details" data-toggle="tab">Detaylar</a></li>
+                        <li><a href="#Reviews" data-toggle="tab">Yorumlar</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="Details">
+                            <div class="valu">
+                                @Html.Raw(Model.Book.Description)
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="Reviews">
+                            <div class="valu valu-2">
+                                @*<div class="section-title mb-60 mt-60">
+                                        <h2>Customer Reviews</h2>
+                                    </div>*@
+                                <ul>
+                                    @foreach (var itemBookComment in Model.Book.BookComment.Where(x => x.IsActive).OrderByDescending(x => x.Date))
+                                    {
+                                        <li>
+                                            <p>
+                                                <b>
+                                                    @(itemBookComment.Header)
+                                                </b>
+                                            </p>
+
+                                            <p>
+                                                @(itemBookComment.Detail)
+                                            </p>
+                                            @(itemBookComment.User.FirstName) @(itemBookComment.User.LastName) - @(itemBookComment.Date.ToShortDateString())
+                                        </li>
+                                    }
+                                    @*<li>
+                                            <div class="review-title">
+                                                asdadas
+                                            </div>
+
+                                        </li>*@
+                                </ul>
+                                <br />
+                                <div class="review-form">
+
+                                    <div class="single-form">
+                                        <span>Yorum <sup>*</sup></span>
+
+                                        <textarea name="massage" style="width:100%" rows="4"></textarea>
+
+                                    </div>
+                                </div>
+                                <div class="review-form-button">
+                                    <a href="#">Gönder</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- product-info-area-end -->
+
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                <div class="shop-left">
+                    <div class="left-title mb-20">
+                        <h4>Yeni Kitaplar</h4>
+                    </div>
+                    <div class="random-area mb-30">
+                        <div class="product-active-2 owl-carousel">
+                            <div class="product-total-2">
+                                @foreach (var itemNewBooks in Model.NewBooks)
+                                {
+                                    <div class="single-most-product bd mb-18">
+                                        <div class="most-product-img">
+                                            <a href="/book/detail/@itemNewBooks.BookId">
+                                                <img src="/BookPhotos/@itemNewBooks.BookImage.Where(x => x.IsActive == true).FirstOrDefault().BookId/@itemNewBooks.BookImage.Where(x => x.IsActive == true).FirstOrDefault().Url" alt="@itemNewBooks.BookName" />
+                                            </a>
+                                        </div>
+                                        <div class="most-product-content">
+                                            <div class="product-rating">
+                                                @{int _BookStarNewBooks = itemNewBooks.BookStarPoint.Where(x => x.IsActive == true).Count() > 0 ? Convert.ToInt32(Math.Round(itemNewBooks.BookStarPoint.Where(x => x.IsActive == true).Average(x => x.Point), MidpointRounding.AwayFromZero)) : 0;
+
+                                                    <ul>
+                                                        @for (int i = 0; i < _BookStarNewBooks; i++)
+                                                        {
+                                                            <li><a href="/book/detail/@itemNewBooks.BookId"><i class="fa fa-star"></i></a></li>
+                                                        }
+
+                                                    </ul>
+                                                    if (_BookStarNewBooks == 0)
+                                                    {
+                                                        <span>Puan Yok</span>
+                                                    }
+                                                }
+
+
+                                            </div>
+                                            <h4>
+                                                <a href="/book/detail/@itemNewBooks.BookId">
+                                                    @(itemNewBooks.BookName.Length > 20
+                                                        ? itemNewBooks.BookName.Substring(0, 20) + ".."
+                                                        : itemNewBooks.BookName)
+                                                </a>
+                                            </h4>
+                                            <div class="product-price">
+                                                <ul>
+                                                    @foreach (var AuthorNameLoopItem in itemNewBooks.BookAuthor)
+                                                    {
+                                                        <li>
+                                                            <a href="/book/detail/@itemNewBooks.BookId">
+                                                                @(
+                                                                    AuthorNameLoopItem.Author.AuthorName.Length > 15
+                                                                    ? AuthorNameLoopItem.Author.AuthorName.Substring(0, 15) + ".."
+                                                                    : AuthorNameLoopItem.Author.AuthorName
+                                                                )
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                    @(itemNewBooks.BookAuthor.Count > 0
+                                                        ? Html.Raw("")
+                                                        : Html.Raw("<li>-</li>"))
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                                @*<div class="single-most-product bd mb-18">
+                                        <div class="most-product-img">
+                                            <a href="#"><img src="img/product/20.jpg" alt="book" /></a>
+                                        </div>
+                                        <div class="most-product-content">
+                                            <div class="product-rating">
+                                                <ul>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <h4><a href="#">Endeavor Daytrip</a></h4>
+                                            <div class="product-price">
+                                                <ul>
+                                                    <li>$30.00</li>
+                                                    <li class="old-price">$33.00</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="single-most-product">
+                                        <div class="most-product-img">
+                                            <a href="#"><img src="img/product/22.jpg" alt="book" /></a>
+                                        </div>
+                                        <div class="most-product-content">
+                                            <div class="product-rating">
+                                                <ul>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <h4><a href="#">Compete Track Tote</a></h4>
+                                            <div class="product-price">
+                                                <ul>
+                                                    <li>$35.00</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                            </div>
+
+                        </div>
+                    </div>
+                    @*<div class="banner-area mb-30">
+                            <div class="banner-img-2">
+                                <a href="#"><img src="img/banner/33.jpg" alt="banner" /></a>
+                            </div>
+                        </div>*@
+                    @*<div class="left-title-2 mb-30">
+                            <h2>Compare Products</h2>
+                            <p>You have no items to compare.</p>
+                        </div>
+                        <div class="left-title-2">
+                            <h2>My Wish List</h2>
+                            <p>You have no items in your wish list.</p>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- product-main-area-end -->

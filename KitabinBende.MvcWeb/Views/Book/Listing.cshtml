@@ -177,7 +177,8 @@
                                     @foreach (var itemSortOptions in Model.SortOptions)
                                     {
                                         <!option @(Model.CurrentSortID == itemSortOptions.SortID ? "selected" : "") value="@itemSortOptions.SortID">
-                                        @itemSortOptions.SortName</!option>
+                                            @itemSortOptions.SortName
+                                        </!option>
                                     }
 
                                 </select>
@@ -195,12 +196,12 @@
                                             <!-- single-product-start -->
                                             <div class="product-wrapper mb-40">
                                                 <div class="product-img">
-                                                    <a href="#">
+                                                    <a href="/book/detail/@ListLoopItem.Book.BookId">
                                                         @*width:256px; height:350px;*@
                                                         <img src="/BookPhotos/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().BookId/@ListLoopItem.Book.BookImage.Where(x => x.IsActive == true).FirstOrDefault().Url" alt="@ListLoopItem.Book.BookName" class="primary" height="300" style="border:1px solid lightgray" />
                                                     </a>
                                                     <div class="quick-view">
-                                                        <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
+                                                        <a class="action-view" href="/book/detail/@ListLoopItem.Book.BookId" data-target="#productModal" data-toggle="modal" title="Quick View">
                                                             <i class="fa fa-search-plus"></i>
                                                         </a>
                                                     </div>
@@ -218,7 +219,7 @@
                                                             <ul>
                                                                 @for (int i = 0; i < _BookStar; i++)
                                                                 {
-                                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                                                    <li><a href="/book/detail/@ListLoopItem.Book.BookId"><i class="fa fa-star"></i></a></li>
                                                                 }
 
                                                             </ul>
@@ -231,7 +232,7 @@
 
                                                     </div>
                                                     <h4>
-                                                        <a href="#">
+                                                        <a href="/book/detail/@ListLoopItem.Book.BookId">
                                                             @(ListLoopItem.Book.BookName.Length > 20
                                                     ? ListLoopItem.Book.BookName.Substring(0, 20) + ".."
                                                     : ListLoopItem.Book.BookName)
@@ -259,11 +260,11 @@
                                                 </div>
                                                 <div class="product-link">
                                                     <div class="product-button">
-                                                        <a href="#" title="Detay"><i class="fa fa-book"></i>Detay</a>
+                                                        <a href="/book/detail/@ListLoopItem.Book.BookId" title="Detay"><i class="fa fa-book"></i>Detay</a>
                                                     </div>
                                                     <div class="add-to-link">
                                                         <ul>
-                                                            <li><a href="product-details.html" title="Detay"><i class="fa fa-external-link"></i></a></li>
+                                                            <li><a href="/book/detail/@ListLoopItem.Book.BookId" title="Detay"><i class="fa fa-external-link"></i></a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -366,5 +367,5 @@
                 </div>
             </div>
         </div>
-        </div>
+
         <!-- shop-main-area-end -->

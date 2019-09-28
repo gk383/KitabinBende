@@ -37,6 +37,9 @@ namespace KitabinBende.MvcWeb
             services.AddScoped<ILanguageService, LanguageManager>();
             services.AddScoped<ILanguageDal, EfLanguageDal>();
 
+            services.AddScoped<IBookService, BookManager>();
+            services.AddScoped<IBookDal, EfBookDal>();
+
             services.AddDbContext<CustomIdentityDbContext>
                 (options => options.UseSqlServer("Server=.;Database=KitabinBendeDb;user id=sa;password=123qaz;Trusted_Connection=True;"));
 

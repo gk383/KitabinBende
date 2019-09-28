@@ -15,8 +15,8 @@ namespace KitabinBende.Business.Abstract
         List<Library> GetListing(List<Category> categories=null, int authorId=0,int publisherId=0,int languageId=0, int pageSort=0);
         List<SortOption<IGrouping<Book, Library>, object>> GetSortOptions();
 
-        List<Book> GetNewBooks();
-        List<Book> GetMostPopularBooks();
+        List<Book> GetNewBooks(int requestedItem);
+        List<Book> GetMostPopularBooks(int requestedItem);
 
         void Add(Library library);
         void Update(Library library);
